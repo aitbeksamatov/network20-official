@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckSquare, Square, ChevronLeft, Loader2, CheckCircle, Info } from 'lucide-react';
 import { toast, Toaster } from 'sonner';
 
-const STAGES = ['Eutychus', 'Timothy', 'Titus', 'Silas', 'Paul'];
+const STAGES = ['Timothy', 'Titus', 'Silas', 'Paul'];
 const TOTAL_STEPS = 10;
 
 // --- УНИФИЦИРОВАННЫЕ КОМПОНЕНТЫ СТИЛЯ ---

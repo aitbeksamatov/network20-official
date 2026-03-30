@@ -63,19 +63,19 @@ const HomeView = ({ onStart }) => (
       {/* ВЕРХНЯЯ ЧАСТЬ - ПРИЖАТА К САМОМУ ВЕРХУ */}
       <div className="relative z-10 pt-70 space-y-4">
         <div className="inline-flex items-center bg-[#F4B433]/20 backdrop-blur-md border border-[#F4B433]/30 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-[#F4B433]">
-          ✦ Growing Together
+          ✦ some text
         </div>
         {/* Заголовок поднят выше и немного уменьшен, чтобы освободить лицо */}
         <h2 className="text-[38px] leading-[1.0] font-serif font-bold italic">
-          Making Disciples <br /> 
-          <span className="text-[#F4B433] not-italic">Who Make Disciples</span>
+          Men Discipling <br /> 
+          <span className="text-[#F4B433] not-italic">Young Men</span>
         </h2>
       </div>
 
       {/* НИЖНЯЯ ЧАСТЬ - КНОПКА ОСТАЕТСЯ ВНИЗУ */}
       <div className="relative z-10 w-full pt-10">
         <button onClick={onStart} className="w-full bg-[#F4B433] text-[#101828] font-black py-4 rounded-2xl text-sm shadow-xl shadow-[#F4B433]/30 active:scale-95 transition-all uppercase tracking-widest">
-          BECOME A DISCIPLE MAKER
+          BECOME A DISCIPLE-MAKER
         </button>
       </div>
     </section>
@@ -199,11 +199,11 @@ const AboutView = () => {
           <h3 className="font-black text-[#101828] tracking-[0.3em] text-xs uppercase text-center">Why We Exist</h3>
           <div className="space-y-5">
             {[
-              "To Engage Young Men",
-              "To Help Them Discover Purpose",
-              "To Multiply Global Impact",
-              "To Shape Life Decisions",
-              "To Reveal the Fullness of God"
+              "Maximize Impact",
+              "Realize Purpose",
+              "Influence Globally",
+              "Impact Decisions",
+              "Reveal the Trinity"
             ].map((text, i) => (
               <div key={i} className="flex items-center gap-4 bg-white/20 p-4 rounded-2xl backdrop-blur-sm border border-white/30">
                 <CheckCircle size={18} className="text-[#101828]" />
