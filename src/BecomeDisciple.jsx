@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-// Добавлен импорт Info, чтобы не было белого экрана
 import { CheckSquare, Square, ChevronLeft, Loader2, CheckCircle, Info } from 'lucide-react';
 import { toast, Toaster } from 'sonner';
 
@@ -286,7 +285,6 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 8: Количество учеников */}
           {step === 8 && (
             <div className="space-y-8">
               <div className="text-center">
@@ -311,7 +309,6 @@ export default function BecomeDisciple({ onBack }) {
                 ))}
               </div>
 
-              {/* Кнопка перехода — теперь она обязательна */}
               <div className="pt-4">
                 <PrimaryButton 
                   disabled={!form.count} 
@@ -322,7 +319,7 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             </div>
           )}
-            {/* ШАГ 9: Детали учеников (Проверка отрисовки) */}
+
             {step === 9 && (
               <div className="pb-10">
                 <div className="mb-6">
@@ -385,6 +382,27 @@ export default function BecomeDisciple({ onBack }) {
                 >
                     COMPLETE REGISTRATION
                 </PrimaryButton>
+
+                {/* ДОБАВЛЕННЫЙ БЛОК ПОДСКАЗОК ДЛЯ ШАГА 9 */}
+                <div className="mt-12 border-t border-gray-100 pt-8">
+                  <h3 className="text-sm font-bold text-[#101828] mb-4 flex items-center gap-2">
+                    <Info size={16} className="text-[#F4B433]" /> Not sure which stage to choose?
+                  </h3>
+                  <div className="space-y-3">
+                    {STAGE_DETAILS.map((detail) => (
+                      <details key={detail.title} className="group bg-gray-50 rounded-2xl overflow-hidden transition-all">
+                        <summary className="list-none p-4 cursor-pointer flex justify-between items-center font-bold text-xs text-gray-600">
+                          {detail.title}
+                          <span className="text-[#F4B433] transition-transform group-open:rotate-180">↓</span>
+                        </summary>
+                        <div className="px-4 pb-4 text-[13px] leading-relaxed text-gray-500 space-y-3">
+                          <p>{detail.desc}</p>
+                          <p className="text-[11px] italic bg-white/50 p-2 rounded-lg border-l-2 border-[#F4B433]/30">{detail.history}</p>
+                        </div>
+                      </details>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
           </motion.div>
