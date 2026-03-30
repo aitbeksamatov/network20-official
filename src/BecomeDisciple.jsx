@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckSquare, Square, ChevronLeft, Loader2, CheckCircle, Info } from 'lucide-react';
 import { toast, Toaster } from 'sonner';
 
-const STAGES = ['Timothy', 'Titus', 'Silas', 'Paul'];
+// Теперь Eutychus в общем списке
+const STAGES = ['Eutychus', 'Timothy', 'Titus', 'Silas', 'Paul'];
 const TOTAL_STEPS = 10;
 
 // --- УНИФИЦИРОВАННЫЕ КОМПОНЕНТЫ СТИЛЯ ---
@@ -122,6 +123,7 @@ export default function BecomeDisciple({ onBack }) {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
+            {/* ШАГИ 0-6 ПРОПУЩЕНЫ ДЛЯ КРАТКОСТИ, ОНИ ОСТАЮТСЯ ТАКИМИ ЖЕ */}
             {step === 0 && (
               <div className="space-y-6">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">Network 20 Disciple-maker</h1>
@@ -242,11 +244,14 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
+            {/* ШАГ 7: Выбор стадии пользователя (БЕЗ Eutychus) */}
             {step === 7 && (
               <div className="space-y-4 pb-10">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">Your Stage</h1>
                 <div className="space-y-3">
-                  {[...STAGES, 'Barnabas'].map(s => (
+                  {[...STAGES, 'Barnabas']
+                    .filter(s => s !== 'Eutychus') // СКРЫВАЕМ Eutychus для пользователя
+                    .map(s => (
                     <button 
                       key={s} 
                       onClick={() => set('stage', s)} 
@@ -285,41 +290,35 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-          {step === 8 && (
-            <div className="space-y-8">
-              <div className="text-center">
-                <h1 className="text-3xl font-serif font-bold text-[#101828] mb-2">How many disciples?</h1>
-                <p className="text-sm text-gray-400">Select the number of men in your group.</p>
+            {step === 8 && (
+              <div className="space-y-8">
+                <div className="text-center">
+                  <h1 className="text-3xl font-serif font-bold text-[#101828] mb-2">How many disciples?</h1>
+                  <p className="text-sm text-gray-400">Select the number of men in your group.</p>
+                </div>
+                <div className="grid grid-cols-3 gap-4">
+                  {[1, 2, 3, 4, 5, 6].map(n => (
+                    <button 
+                      key={n} 
+                      type="button"
+                      onClick={() => handleCountChange(String(n))} 
+                      className={`py-8 rounded-3xl text-3xl font-serif font-bold transition-all border-2 ${
+                        form.count === String(n) 
+                        ? 'bg-[#F4B433] border-[#F4B433] text-[#101828] shadow-lg shadow-[#F4B433]/20' 
+                        : 'bg-gray-50 border-transparent text-gray-300 hover:bg-gray-100'
+                      }`}
+                    >
+                      {n}
+                    </button>
+                  ))}
+                </div>
+                <div className="pt-4">
+                  <PrimaryButton disabled={!form.count} onClick={next}>NEXT</PrimaryButton>
+                </div>
               </div>
+            )}
 
-              <div className="grid grid-cols-3 gap-4">
-                {[1, 2, 3, 4, 5, 6].map(n => (
-                  <button 
-                    key={n} 
-                    type="button"
-                    onClick={() => handleCountChange(String(n))} 
-                    className={`py-8 rounded-3xl text-3xl font-serif font-bold transition-all border-2 ${
-                      form.count === String(n) 
-                      ? 'bg-[#F4B433] border-[#F4B433] text-[#101828] shadow-lg shadow-[#F4B433]/20' 
-                      : 'bg-gray-50 border-transparent text-gray-300 hover:bg-gray-100'
-                    }`}
-                  >
-                    {n}
-                  </button>
-                ))}
-              </div>
-
-              <div className="pt-4">
-                <PrimaryButton 
-                  disabled={!form.count} 
-                  onClick={next}
-                >
-                  NEXT
-                </PrimaryButton>
-              </div>
-            </div>
-          )}
-
+            {/* ШАГ 9: Детали учеников (Здесь Eutychus ДОСТУПЕН) */}
             {step === 9 && (
               <div className="pb-10">
                 <div className="mb-6">
@@ -335,23 +334,13 @@ export default function BecomeDisciple({ onBack }) {
                               {d.name && d.stage && <CheckCircle size={14} className="text-green-500" />}
                             </div>
                             
-                            <StyledInput 
-                              placeholder="Full Name" 
-                              value={d.name} 
-                              onChange={e => updateDisciple(i, 'name', e.target.value)} 
-                            />
-                            
-                            <StyledInput 
-                              type="number" 
-                              placeholder="Age" 
-                              value={d.age} 
-                              onChange={e => updateDisciple(i, 'age', e.target.value)} 
-                            />
+                            <StyledInput placeholder="Full Name" value={d.name} onChange={e => updateDisciple(i, 'name', e.target.value)} />
+                            <StyledInput type="number" placeholder="Age" value={d.age} onChange={e => updateDisciple(i, 'age', e.target.value)} />
 
                             <div className="space-y-2">
                               <p className="text-[10px] font-bold text-gray-400 uppercase ml-1">Select Stage</p>
                               <div className="flex flex-wrap gap-2">
-                                  {STAGES.map(s => (
+                                  {STAGES.map(s => ( // ТУТ ВЫВОДИМ ВЕСЬ STAGES, включая Eutychus
                                       <button 
                                         key={s} 
                                         onClick={() => {
@@ -383,7 +372,7 @@ export default function BecomeDisciple({ onBack }) {
                     COMPLETE REGISTRATION
                 </PrimaryButton>
 
-                {/* ДОБАВЛЕННЫЙ БЛОК ПОДСКАЗОК ДЛЯ ШАГА 9 */}
+                {/* БЛОК ПОДСКАЗОК НА 9 ШАГЕ */}
                 <div className="mt-12 border-t border-gray-100 pt-8">
                   <h3 className="text-sm font-bold text-[#101828] mb-4 flex items-center gap-2">
                     <Info size={16} className="text-[#F4B433]" /> Not sure which stage to choose?
