@@ -107,7 +107,7 @@ const HomeView = ({ onStart }) => (
         <div className="mt-6 pt-6 border-t border-gray-200/60">
           <p className="text-gray-500 text-[14px] leading-relaxed text-center italic">
             To be a fully committed disciple of Jesus is to flourish in our relationships with God as we 
-            <span className="text-[#F4B433] font-bold not-italic px-1">Know, Love, Listen, Obey, & Share</span> 
+            <span className="text-[#F4B433] font-bold not-italic px-1">Know, Love, Listen, & Obey</span> 
             the Father, Jesus, and Holy Spirit.
           </p>
         </div>
