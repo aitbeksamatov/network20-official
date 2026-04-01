@@ -101,13 +101,15 @@ const HomeView = ({ onStart }) => (
       <div className="relative bg-gray-50 p-8 rounded-[40px] border border-gray-100">
         <p className="text-gray-600 text-[15px] leading-relaxed text-center font-medium">
           We believe that we who claim Jesus as Lord and Savior are His disciples. 
-          <span className="text-[#101828] font-bold"> That is our identity.</span>
+          <span className="block text-[#101828] font-bold mt-1">
+            That is our identity.
+          </span>
         </p>
         
         <div className="mt-6 pt-6 border-t border-gray-200/60">
           <p className="text-gray-500 text-[14px] leading-relaxed text-center italic">
             To be a fully committed disciple of Jesus is to flourish in our relationships with God as we 
-            <span className="text-[#F4B433] font-bold not-italic px-1">Know, Love, Listen, Obey, and Share</span> 
+            <span className="text-[#F4B433] font-bold not-italic px-1">Know, Love, Listen, Obey, & Share</span> 
             the Father, Jesus, and Holy Spirit.
           </p>
         </div>
@@ -116,7 +118,7 @@ const HomeView = ({ onStart }) => (
 
     {/* STATS SECTION */}
     <section className="px-6 py-12 text-center grid grid-cols-2 gap-4 bg-gray-50/50 rounded-t-[48px]">
-      <StatCard icon={<UserPlus className="text-[#F4B433]"/>} num="2,500+" label="Active Disciples" />
+      <StatCard icon={<UserPlus className="text-[#F4B433]"/>} num="2,500+" label="DISCIPLE-MAKERS" />
       <StatCard icon={<Globe className="text-[#F4B433]"/>} num="65" label="Countries" />
       <div className="col-span-2">
         <StatCard icon={<Heart className="text-[#F4B433]"/>} num="10,600+" label="Total Disciples" />
@@ -136,7 +138,7 @@ const AboutView = () => {
         <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=800&q=80" className="absolute inset-0 w-full h-full object-cover" alt="About" />
         <div className="absolute inset-0 bg-[#101828]/80 backdrop-blur-[2px]"></div>
         <div className="relative space-y-2">
-          <span className="text-[#F4B433] font-black tracking-[0.2em] text-[10px] uppercase">Since 2013</span>
+          <span className="text-[#F4B433] font-black tracking-[0.2em] text-[10px] uppercase">Since 2014</span>
           <h2 className="text-5xl font-serif font-bold tracking-tight">About Us</h2>
         </div>
       </section>
@@ -148,7 +150,7 @@ const AboutView = () => {
           </div>
           <div className="flex-1">
             <h4 className="font-black text-[#101828] text-sm uppercase tracking-tight">Network 20 FAQ</h4>
-            <p className="text-gray-400 text-[11px] font-medium">View & Download Document (Word)</p>
+            <p className="text-gray-400 text-[11px] font-medium">View & Download Document</p>
           </div>
           <ChevronRight size={20} className="text-[#F4B433]" />
         </button>
