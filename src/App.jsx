@@ -62,9 +62,7 @@ const HomeView = ({ onStart }) => (
       
       {/* ВЕРХНЯЯ ЧАСТЬ - ПРИЖАТА К САМОМУ ВЕРХУ */}
       <div className="relative z-10 pt-70 space-y-4">
-        <div className="inline-flex items-center bg-[#F4B433]/20 backdrop-blur-md border border-[#F4B433]/30 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-[#F4B433]">
-          ✦ some text
-        </div>
+        
         {/* Заголовок поднят выше и немного уменьшен, чтобы освободить лицо */}
         <h2 className="text-[38px] leading-[1.0] font-serif font-bold italic">
           Men Discipling <br /> 
