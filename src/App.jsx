@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // Не забудьте импортировать ваше лого, если оно лежит в assets:
 import myLogo from './assets/my-logo.jpg';
-// Импорт иконок (добавлена Zap для раздела Strategy)
+// Импорт иконок
 import { 
   Plus, Home, Info, UserPlus, BookOpen, Mail, Globe, 
   Heart, ChevronRight, CheckCircle, Search, Zap 
@@ -150,6 +150,7 @@ const AboutView = () => {
           <ChevronRight size={20} className="text-[#F4B433]" />
         </button>
 
+        {/* Vision & Mission */}
         <div className="grid gap-4">
           <div className="bg-[#101828] p-8 rounded-[32px] text-white space-y-3">
             <div className="flex items-center gap-3 text-[#F4B433]">
@@ -171,6 +172,7 @@ const AboutView = () => {
           </div>
         </div>
 
+        {/* Core Values */}
         <div className="pt-6 space-y-6 text-center">
           <h3 className="font-black text-[#101828] tracking-[0.3em] text-xs uppercase">Core Values</h3>
           <div className="space-y-4 text-left">
@@ -192,6 +194,7 @@ const AboutView = () => {
           </div>
         </div>
 
+        {/* Why We Exist */}
         <div className="bg-[#F4B433] p-8 rounded-[40px] space-y-8 shadow-lg shadow-[#F4B433]/20">
           <h3 className="font-black text-[#101828] tracking-[0.3em] text-xs uppercase text-center">Why We Exist</h3>
           <div className="space-y-4">
@@ -217,45 +220,34 @@ const AboutView = () => {
           </div>
         </div>
 
-        {/* НОВЫЙ РАЗДЕЛ: OUR STRATEGY (БЫВШИЙ STEP 1) */}
+        {/* NEW SECTION: NETWORK 20 DISCIPLE-MAKER (БЫВШИЙ STEP 0) */}
         <div className="pt-10 space-y-8">
-          <h3 className="font-black text-[#101828] tracking-[0.3em] text-xs uppercase text-center">Our Strategy</h3>
-          <div className="grid gap-4">
+          <div className="space-y-2 text-center">
+            <h3 className="font-black text-[#101828] tracking-[0.3em] text-xs uppercase">Our Strategy</h3>
+            <h2 className="text-3xl font-serif font-bold text-[#101828]">Network 20 Disciple-maker</h2>
+          </div>
+          
+          <div className="grid gap-3">
             {[
-              { 
-                t: 'Inspire', 
-                d: 'We encourage, empower, and provide accountability to men discipling young men.',
-                icon: <Zap size={20} className="text-[#F4B433]" />
-              },
-              { 
-                t: 'Equip', 
-                d: 'We train, provide disciple-making materials, and coach disciple-makers.',
-                icon: <BookOpen size={20} className="text-[#F4B433]" />
-              },
-              { 
-                t: 'Activate', 
-                d: 'We recruit, and help other disciple-makers recruit men to join the movement.',
-                icon: <UserPlus size={20} className="text-[#F4B433]" />
-              },
-              { 
-                t: 'Connect', 
-                d: 'We encourage disciple-makers to collaborate locally and internationally.',
-                icon: <Globe size={20} className="text-[#F4B433]" />
-              }
+              { t: 'Inspire', d: 'Encourage and empower men.', icon: <Zap size={20} className="text-[#F4B433]" /> },
+              { t: 'Equip', d: 'Provide materials.', icon: <BookOpen size={20} className="text-[#F4B433]" /> },
+              { t: 'Activate', d: 'Help recruit men.', icon: <UserPlus size={20} className="text-[#F4B433]" /> },
+              { t: 'Connect', d: 'Collaborate locally.', icon: <Globe size={20} className="text-[#F4B433]" /> }
             ].map((item, i) => (
-              <div key={i} className="flex gap-4 p-5 bg-gray-50 rounded-[28px] border border-gray-100 items-start">
-                <div className="w-10 h-10 rounded-2xl bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm">
+              <div key={i} className="p-5 bg-gray-50 rounded-[28px] border border-gray-100 flex items-center gap-4">
+                <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center shadow-sm shrink-0">
                   {item.icon}
                 </div>
-                <div className="space-y-1">
-                  <h5 className="font-bold text-[#101828] text-sm">{item.t}</h5>
-                  <p className="text-gray-500 text-[12px] leading-relaxed">{item.d}</p>
+                <div className="flex flex-col">
+                  <span className="font-black text-[#101828] text-xs uppercase tracking-tight">{item.t}</span>
+                  <span className="text-gray-500 text-[13px] leading-tight">{item.d}</span>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
+        {/* Final Quote */}
         <div className="mt-12 bg-[#F4B433]/10 p-8 rounded-[32px] border-2 border-dashed border-[#F4B433]/30 text-center">
             <p className="text-[#101828] font-serif font-bold text-lg mb-2">"Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, and teaching them to obey everything I have commanded you. And surely I am with you always, to the very end of the age."</p>
             <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">MATTHEW 28:19-20</span>

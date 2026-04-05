@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckSquare, Square, ChevronLeft, Loader2, CheckCircle, Info } from 'lucide-react';
 import { toast, Toaster } from 'sonner';
 
-// Теперь Eutychus в общем списке
 const STAGES = ['Eutychus', 'Timothy', 'Titus', 'Silas', 'Paul'];
 const TOTAL_STEPS = 9; // Изменено с 10 на 9
 
@@ -123,7 +122,7 @@ export default function BecomeDisciple({ onBack }) {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
-            {/* НОВЫЙ ШАГ 0 (БЫВШИЙ ШАГ 1) */}
+            {/* ШАГ 0: HOW IT WORKS (Стал первым) */}
             {step === 0 && (
               <div className="space-y-6">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">How it works</h1>
@@ -143,7 +142,7 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 1 (БЫВШИЙ ШАГ 2) */}
+            {/* ШАГ 1: AGREEMENTS */}
             {step === 1 && (
               <div className="space-y-4">
                 <h1 className="text-3xl font-serif font-bold text-[#101828] mb-6">Agreements</h1>
@@ -160,7 +159,7 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 2 (БЫВШИЙ ШАГ 3) */}
+            {/* ШАГ 2: PERSONAL INFO */}
             {step === 2 && (
               <div className="space-y-6">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">Personal Info</h1>
@@ -185,7 +184,7 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 3 (БЫВШИЙ ШАГ 4) */}
+            {/* ШАГ 3: CONTACT INFO */}
             {step === 3 && (
               <div className="space-y-6">
                 <div className="space-y-2">
@@ -205,7 +204,7 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 4 (БЫВШИЙ ШАГ 5) */}
+            {/* ШАГ 4: LOCATION */}
             {step === 4 && (
               <div className="space-y-6">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">Location</h1>
@@ -217,7 +216,7 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 5 (БЫВШИЙ ШАГ 6) */}
+            {/* ШАГ 5: CHURCH */}
             {step === 5 && (
               <div className="space-y-6">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">Church</h1>
@@ -229,7 +228,7 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 6 (БЫВШИЙ ШАГ 7) */}
+            {/* ШАГ 6: YOUR STAGE */}
             {step === 6 && (
               <div className="space-y-4 pb-10">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">Your Stage</h1>
@@ -275,7 +274,7 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 7 (БЫВШИЙ ШАГ 8) */}
+            {/* ШАГ 7: COUNT */}
             {step === 7 && (
               <div className="space-y-8">
                 <div className="text-center">
@@ -304,7 +303,7 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 8 (БЫВШИЙ ШАГ 9) */}
+            {/* ШАГ 8: DISCIPLE DETAILS */}
             {step === 8 && (
               <div className="pb-10">
                 <div className="mb-6">
@@ -326,7 +325,7 @@ export default function BecomeDisciple({ onBack }) {
                             <div className="space-y-2">
                               <p className="text-[10px] font-bold text-gray-400 uppercase ml-1">Select Stage</p>
                               <div className="flex flex-wrap gap-2">
-                                  {STAGES.map(s => ( 
+                                  {STAGES.map(s => (
                                       <button 
                                         key={s} 
                                         onClick={() => {
