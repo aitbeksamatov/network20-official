@@ -223,16 +223,16 @@ const AboutView = () => {
         {/* NEW SECTION: NETWORK 20 DISCIPLE-MAKER (БЫВШИЙ STEP 0) */}
         <div className="pt-10 space-y-8">
           <div className="space-y-2 text-center">
-            <h3 className="font-black text-[#101828] tracking-[0.3em] text-xs uppercase">Our Strategy</h3>
-            <h2 className="text-3xl font-serif font-bold text-[#101828]">Network 20 Disciple-maker</h2>
+            <h3 className="font-black text-[#101828] tracking-[0.3em] text-xs uppercase">Network 20 is Your Resource</h3>
+           
           </div>
           
           <div className="grid gap-3">
             {[
-              { t: 'Inspire', d: 'Encourage and empower men.', icon: <Zap size={20} className="text-[#F4B433]" /> },
-              { t: 'Equip', d: 'Provide materials.', icon: <BookOpen size={20} className="text-[#F4B433]" /> },
-              { t: 'Activate', d: 'Help recruit men.', icon: <UserPlus size={20} className="text-[#F4B433]" /> },
-              { t: 'Connect', d: 'Collaborate locally.', icon: <Globe size={20} className="text-[#F4B433]" /> }
+              { t: 'Inspire', d: 'We encourage, empower, and provide accountability.', icon: <Zap size={20} className="text-[#F4B433]" /> },
+              { t: 'Equip', d: 'We train, and issue materials, and coach.', icon: <BookOpen size={20} className="text-[#F4B433]" /> },
+              { t: 'Activate', d: 'We enable recruitment.', icon: <UserPlus size={20} className="text-[#F4B433]" /> },
+              { t: 'Connect', d: 'We collaborate worldwide.', icon: <Globe size={20} className="text-[#F4B433]" /> }
             ].map((item, i) => (
               <div key={i} className="p-5 bg-gray-50 rounded-[28px] border border-gray-100 flex items-center gap-4">
                 <div className="w-10 h-10 rounded-2xl bg-white flex items-center justify-center shadow-sm shrink-0">
