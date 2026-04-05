@@ -5,7 +5,7 @@ import { toast, Toaster } from 'sonner';
 
 // Теперь Eutychus в общем списке
 const STAGES = ['Eutychus', 'Timothy', 'Titus', 'Silas', 'Paul'];
-const TOTAL_STEPS = 10;
+const TOTAL_STEPS = 9; // Изменено с 10 на 9
 
 // --- УНИФИЦИРОВАННЫЕ КОМПОНЕНТЫ СТИЛЯ ---
 const StyledInput = (props) => (
@@ -123,28 +123,8 @@ export default function BecomeDisciple({ onBack }) {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
-            {/* ШАГИ 0-6 ПРОПУЩЕНЫ ДЛЯ КРАТКОСТИ, ОНИ ОСТАЮТСЯ ТАКИМИ ЖЕ */}
+            {/* НОВЫЙ ШАГ 0 (БЫВШИЙ ШАГ 1) */}
             {step === 0 && (
-              <div className="space-y-6">
-                <h1 className="text-3xl font-serif font-bold text-[#101828]">Network 20 Disciple-maker</h1>
-                <div className="space-y-3">
-                  {[
-                    ['Inspire', 'Encourage and empower men.'],
-                    ['Equip', 'Provide materials.'],
-                    ['Activate', 'Help recruit men.'],
-                    ['Connect', 'Collaborate locally.']
-                  ].map(([t, d]) => (
-                    <div key={t} className="p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                        <span className="font-bold text-[#101828] text-sm">{t}: </span>
-                        <span className="text-gray-500 text-sm">{d}</span>
-                    </div>
-                  ))}
-                </div>
-                <PrimaryButton onClick={next}>CONTINUE</PrimaryButton>
-              </div>
-            )}
-
-            {step === 1 && (
               <div className="space-y-6">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">How it works</h1>
                 <div className="space-y-4">
@@ -163,7 +143,8 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {step === 2 && (
+            {/* ШАГ 1 (БЫВШИЙ ШАГ 2) */}
+            {step === 1 && (
               <div className="space-y-4">
                 <h1 className="text-3xl font-serif font-bold text-[#101828] mb-6">Agreements</h1>
                 {[
@@ -179,7 +160,8 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {step === 3 && (
+            {/* ШАГ 2 (БЫВШИЙ ШАГ 3) */}
+            {step === 2 && (
               <div className="space-y-6">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">Personal Info</h1>
                 <div className="space-y-4">
@@ -203,7 +185,8 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {step === 4 && (
+            {/* ШАГ 3 (БЫВШИЙ ШАГ 4) */}
+            {step === 3 && (
               <div className="space-y-6">
                 <div className="space-y-2">
                     <h1 className="text-3xl font-serif font-bold text-[#101828]">Contact Info</h1>
@@ -222,7 +205,8 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {step === 5 && (
+            {/* ШАГ 4 (БЫВШИЙ ШАГ 5) */}
+            {step === 4 && (
               <div className="space-y-6">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">Location</h1>
                 <div className="space-y-4">
@@ -233,7 +217,8 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {step === 6 && (
+            {/* ШАГ 5 (БЫВШИЙ ШАГ 6) */}
+            {step === 5 && (
               <div className="space-y-6">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">Church</h1>
                 <div className="space-y-4">
@@ -244,13 +229,13 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 7: Выбор стадии пользователя (БЕЗ Eutychus) */}
-            {step === 7 && (
+            {/* ШАГ 6 (БЫВШИЙ ШАГ 7) */}
+            {step === 6 && (
               <div className="space-y-4 pb-10">
                 <h1 className="text-3xl font-serif font-bold text-[#101828]">Your Stage</h1>
                 <div className="space-y-3">
                   {[...STAGES, 'Barnabas']
-                    .filter(s => s !== 'Eutychus') // СКРЫВАЕМ Eutychus для пользователя
+                    .filter(s => s !== 'Eutychus') 
                     .map(s => (
                     <button 
                       key={s} 
@@ -290,7 +275,8 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {step === 8 && (
+            {/* ШАГ 7 (БЫВШИЙ ШАГ 8) */}
+            {step === 7 && (
               <div className="space-y-8">
                 <div className="text-center">
                   <h1 className="text-3xl font-serif font-bold text-[#101828] mb-2">How many disciples?</h1>
@@ -318,8 +304,8 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 9: Детали учеников (Здесь Eutychus ДОСТУПЕН) */}
-            {step === 9 && (
+            {/* ШАГ 8 (БЫВШИЙ ШАГ 9) */}
+            {step === 8 && (
               <div className="pb-10">
                 <div className="mb-6">
                   <h1 className="text-3xl font-serif font-bold text-[#101828]">Disciple Details</h1>
@@ -340,7 +326,7 @@ export default function BecomeDisciple({ onBack }) {
                             <div className="space-y-2">
                               <p className="text-[10px] font-bold text-gray-400 uppercase ml-1">Select Stage</p>
                               <div className="flex flex-wrap gap-2">
-                                  {STAGES.map(s => ( // ТУТ ВЫВОДИМ ВЕСЬ STAGES, включая Eutychus
+                                  {STAGES.map(s => ( 
                                       <button 
                                         key={s} 
                                         onClick={() => {
@@ -372,7 +358,6 @@ export default function BecomeDisciple({ onBack }) {
                     COMPLETE REGISTRATION
                 </PrimaryButton>
 
-                {/* БЛОК ПОДСКАЗОК НА 9 ШАГЕ */}
                 <div className="mt-12 border-t border-gray-100 pt-8">
                   <h3 className="text-sm font-bold text-[#101828] mb-4 flex items-center gap-2">
                     <Info size={16} className="text-[#F4B433]" /> Not sure which stage to choose?

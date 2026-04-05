@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 // Не забудьте импортировать ваше лого, если оно лежит в assets:
 import myLogo from './assets/my-logo.jpg';
-// Если логотипа нет, мы заменим его временной иконкой.
-import { Plus, Home, Info, UserPlus, BookOpen, Mail, Globe, Heart, ChevronRight, CheckCircle, Search } from 'lucide-react';
+// Импорт иконок (добавлена Zap для раздела Strategy)
+import { 
+  Plus, Home, Info, UserPlus, BookOpen, Mail, Globe, 
+  Heart, ChevronRight, CheckCircle, Search, Zap 
+} from 'lucide-react';
 import BecomeDisciple from './BecomeDisciple';
 import Contacts from './Contacts';
 import Equipment from './Equipment';
@@ -14,14 +17,13 @@ const App = () => {
     <div className="max-w-md mx-auto bg-white min-h-screen shadow-2xl relative pb-24 overflow-x-hidden font-sans select-none">
       
       {/* --- HEADER --- */}
-    {/* --- HEADER --- */}
       <header className="flex items-center px-6 py-5 bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
         <div className="mr-3 shrink-0">
           <img 
             src={myLogo} 
             alt="Network 20 Logo" 
             className="w-10 h-10 rounded-xl object-cover shadow-sm" 
-            onError={(e) => { e.target.src = 'https://via.placeholder.com/40'; }} // Резервный вариант, если путь неверный
+            onError={(e) => { e.target.src = 'https://via.placeholder.com/40'; }} 
           />
         </div>
         <h1 className="text-xl font-bold tracking-tight text-[#101828]">
@@ -52,25 +54,20 @@ const App = () => {
 
 const HomeView = ({ onStart }) => (
   <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-    {/* HERO SECTION - ИСПРАВЛЕНО РАСПОЛОЖЕНИЕ */}
+    {/* HERO SECTION */}
     <section className="relative h-[650px] flex flex-col justify-between px-8 pt-10 pb-12 text-white overflow-hidden rounded-b-[48px]">
       <div className="absolute inset-0 z-0">
         <img src="./my-hero.jpg" className="w-full h-full object-cover object-top bg-[#101828]" alt="Hero" />
-        {/* Затемнение теперь идет и сверху (для бейджа) и снизу (для кнопки) */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#101828]/90 via-transparent to-[#101828]/95"></div>
       </div>
       
-      {/* ВЕРХНЯЯ ЧАСТЬ - ПРИЖАТА К САМОМУ ВЕРХУ */}
       <div className="relative z-10 pt-70 space-y-4">
-        
-        {/* Заголовок поднят выше и немного уменьшен, чтобы освободить лицо */}
         <h2 className="text-[38px] leading-[1.0] font-serif font-bold italic">
           Men Discipling <br /> 
           <span className="text-[#F4B433] not-italic">Young Men</span>
         </h2>
       </div>
 
-      {/* НИЖНЯЯ ЧАСТЬ - КНОПКА ОСТАЕТСЯ ВНИЗУ */}
       <div className="relative z-10 w-full pt-10">
         <button onClick={onStart} className="w-full bg-[#F4B433] text-[#101828] font-black py-4 rounded-2xl text-sm shadow-xl shadow-[#F4B433]/30 active:scale-95 transition-all uppercase tracking-widest">
           BECOME A DISCIPLE-MAKER
@@ -119,7 +116,7 @@ const HomeView = ({ onStart }) => (
       <StatCard icon={<UserPlus className="text-[#F4B433]"/>} num="2,500+" label="DISCIPLE-MAKERS" />
       <StatCard icon={<Globe className="text-[#F4B433]"/>} num="65" label="Countries" />
       <div className="col-span-2">
-        <StatCard icon={<Heart className="text-[#F4B433]"/>} num="10,600+" label="Total Disciples" />
+        <StatCard icon={<Heart className="text-[#F4B433]"/>} num="10,600+" label="Disciples" />
       </div>
     </section>
   </div>
@@ -195,37 +192,73 @@ const AboutView = () => {
           </div>
         </div>
 
-        <div className="bg-[#F4B433] p-8 rounded-[40px] space-y-6">
+        <div className="bg-[#F4B433] p-8 rounded-[40px] space-y-8 shadow-lg shadow-[#F4B433]/20">
           <h3 className="font-black text-[#101828] tracking-[0.3em] text-xs uppercase text-center">Why We Exist</h3>
-          <div className="space-y-5">
+          <div className="space-y-4">
             {[
-              "Maximize Impact",
-              "Realize Purpose",
-              "Influence Globally",
-              "Impact Decisions",
-              "Reveal the Trinity"
-            ].map((text, i) => (
-              <div key={i} className="flex items-center gap-4 bg-white/20 p-4 rounded-2xl backdrop-blur-sm border border-white/30">
-                <CheckCircle size={18} className="text-[#101828]" />
-                <span className="text-sm font-bold text-[#101828]">{text}</span>
+              { t: "Maximize Impact", d: "Young men in their 20s are invaluable to God and His Kingdom." },
+              { t: "Realize Purpose", d: "Young men long for identity, purpose, and belonging." },
+              { t: "Influence Globally", d: "God desires to advance His Kingdom worldwide through young men by collaborating to accomplish His purposes both near and to the ends of the earth." },
+              { t: "Impact Decisions", d: "During their 20s, men make decisions that shape the rest of their lives." },
+              { t: "Reveal Trinity", d: "Young men (and the rest of us) need a fuller understanding of, and engagement with, Father, Son, and Spirit." }
+            ].map((item, i) => (
+              <div key={i} className="bg-white/95 p-6 rounded-[28px] shadow-sm border border-white/20 flex flex-col gap-2">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-[#F4B433]/10 flex items-center justify-center shrink-0">
+                    <CheckCircle size={18} className="text-[#101828]" />
+                  </div>
+                  <h4 className="text-sm font-black text-[#101828] uppercase tracking-tight">{item.t}</h4>
+                </div>
+                <p className="text-[#101828]/70 text-[13px] leading-relaxed font-medium pl-11">
+                  {item.d}
+                </p>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="pt-10 text-center space-y-6">
-          <h3 className="font-black text-[#101828] tracking-[0.3em] text-xs uppercase">Statement of Faith</h3>
-          <div className="space-y-6 text-gray-500 text-sm italic font-serif px-4 leading-relaxed text-center">
-            <p>"We believe in one God—Father, Son, and Holy Spirit."</p>
-            <p>"God the Father is the Creator and sovereign Lord."</p>
-            <p>"Jesus Christ died for our sins and rose again."</p>
-            <p>"The Holy Spirit is the living presence of God."</p>
+        {/* НОВЫЙ РАЗДЕЛ: OUR STRATEGY (БЫВШИЙ STEP 1) */}
+        <div className="pt-10 space-y-8">
+          <h3 className="font-black text-[#101828] tracking-[0.3em] text-xs uppercase text-center">Our Strategy</h3>
+          <div className="grid gap-4">
+            {[
+              { 
+                t: 'Inspire', 
+                d: 'We encourage, empower, and provide accountability to men discipling young men.',
+                icon: <Zap size={20} className="text-[#F4B433]" />
+              },
+              { 
+                t: 'Equip', 
+                d: 'We train, provide disciple-making materials, and coach disciple-makers.',
+                icon: <BookOpen size={20} className="text-[#F4B433]" />
+              },
+              { 
+                t: 'Activate', 
+                d: 'We recruit, and help other disciple-makers recruit men to join the movement.',
+                icon: <UserPlus size={20} className="text-[#F4B433]" />
+              },
+              { 
+                t: 'Connect', 
+                d: 'We encourage disciple-makers to collaborate locally and internationally.',
+                icon: <Globe size={20} className="text-[#F4B433]" />
+              }
+            ].map((item, i) => (
+              <div key={i} className="flex gap-4 p-5 bg-gray-50 rounded-[28px] border border-gray-100 items-start">
+                <div className="w-10 h-10 rounded-2xl bg-white border border-gray-100 flex items-center justify-center shrink-0 shadow-sm">
+                  {item.icon}
+                </div>
+                <div className="space-y-1">
+                  <h5 className="font-bold text-[#101828] text-sm">{item.t}</h5>
+                  <p className="text-gray-500 text-[12px] leading-relaxed">{item.d}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
         <div className="mt-12 bg-[#F4B433]/10 p-8 rounded-[32px] border-2 border-dashed border-[#F4B433]/30 text-center">
-            <p className="text-[#101828] font-serif font-bold text-lg mb-2">"Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit"</p>
-            <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Matthew 28:19</span>
+            <p className="text-[#101828] font-serif font-bold text-lg mb-2">"Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, and teaching them to obey everything I have commanded you. And surely I am with you always, to the very end of the age."</p>
+            <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">MATTHEW 28:19-20</span>
         </div>
       </div>
     </div>
