@@ -142,7 +142,7 @@ export default function BecomeDisciple({ onBack }) {
                     {stepsInstructions.map((item, idx) => (
                         <div key={idx} className="group p-5 bg-gray-50 rounded-[24px] border border-gray-100 transition-all hover:bg-white hover:shadow-md">
                             <span className="text-[#F4B433] text-[10px] font-black uppercase tracking-[0.2em] mb-2 block">
-                              Step 0{idx + 1}
+                              Step {idx + 1}
                             </span>
                             <p className="text-[13px] leading-relaxed text-gray-600">
                                 <span className="font-black text-[#101828] mr-1">{item.title}.</span> 
