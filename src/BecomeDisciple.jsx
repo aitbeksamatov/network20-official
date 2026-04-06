@@ -4,7 +4,7 @@ import { CheckSquare, Square, ChevronLeft, Loader2, CheckCircle, Info } from 'lu
 import { toast, Toaster } from 'sonner';
 
 const STAGES = ['Eutychus', 'Timothy', 'Titus', 'Silas', 'Paul'];
-const TOTAL_STEPS = 9; // Изменено с 10 на 9
+const TOTAL_STEPS = 9;
 
 // --- УНИФИЦИРОВАННЫЕ КОМПОНЕНТЫ СТИЛЯ ---
 const StyledInput = (props) => (
@@ -122,18 +122,19 @@ export default function BecomeDisciple({ onBack }) {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
-            {/* ШАГ 0: HOW IT WORKS (Стал первым) */}
+            {/* ШАГ 0: HOW IT WORKS */}
             {step === 0 && (
               <div className="space-y-6">
-                <h1 className="text-3xl font-serif font-bold text-[#101828]">How it works</h1>
+                <h1 className="text-3xl font-serif font-bold text-[#101828]">- [ ] How do men join the Network 20 movement?</h1>
                 <div className="space-y-4">
                     {[1, 2, 3].map(n => (
                         <div key={n} className="flex gap-4 p-4 bg-gray-50 rounded-2xl">
                             <span className="text-[#F4B433] font-bold">0{n}</span>
                             <p className="text-sm text-gray-600">
-                                {n === 1 && "Determine your stage and pray about your disciples (max 6)."}
-                                {n === 2 && "Submit this form with their details."}
-                                {n === 3 && "Receive an email to create your account."}
+                                {n === 1 && "QUALIFY. Are you at least 18 and do you claim Jesus as your Lord and Savior?"}
+                                {n === 2 && "LEARN. Ask the Network 20 leader in your area to teach you all you need to know about the movement."}
+                                {n === 3 && "PRAY. Ask God what six or fewer 18 to 29-year-old men He wants you to disciple."}
+                                {n === 3 && "REGISTER. Join the movement for one year by clicking the below button and progressing through the registration steps."}
                             </p>
                         </div>
                     ))}
@@ -316,11 +317,25 @@ export default function BecomeDisciple({ onBack }) {
                         <div key={i} className="p-6 bg-gray-50 rounded-[32px] space-y-4 border border-gray-100">
                             <div className="flex justify-between items-center">
                               <p className="text-[10px] font-black text-[#F4B433] uppercase">Disciple #{i+1}</p>
-                              {d.name && d.stage && <CheckCircle size={14} className="text-green-500" />}
+                              {d.name && d.stage && d.age && <CheckCircle size={14} className="text-green-500" />}
                             </div>
                             
                             <StyledInput placeholder="Full Name" value={d.name} onChange={e => updateDisciple(i, 'name', e.target.value)} />
-                            <StyledInput type="number" placeholder="Age" value={d.age} onChange={e => updateDisciple(i, 'age', e.target.value)} />
+                            
+                            {/* ИСПРАВЛЕННЫЙ ВВОД ВОЗРАСТА */}
+                            <StyledInput 
+                                type="number" 
+                                min="1"
+                                placeholder="Age" 
+                                value={d.age} 
+                                onKeyDown={(e) => ["-", "e", "E", "+", "."].includes(e.key) && e.preventDefault()}
+                                onChange={e => {
+                                    const val = e.target.value;
+                                    if (val === '' || parseInt(val) > 0) {
+                                        updateDisciple(i, 'age', val);
+                                    }
+                                }} 
+                            />
 
                             <div className="space-y-2">
                               <p className="text-[10px] font-bold text-gray-400 uppercase ml-1">Select Stage</p>
