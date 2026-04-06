@@ -125,7 +125,7 @@ export default function BecomeDisciple({ onBack }) {
             {/* ШАГ 0: HOW IT WORKS */}
             {step === 0 && (
               <div className="space-y-6">
-                <h1 className="text-3xl font-serif font-bold text-[#101828]">- [ ] How do men join the Network 20 movement?</h1>
+                <h1 className="text-3xl font-serif font-bold text-[#101828]">How do men join the Network 20 movement?</h1>
                 <div className="space-y-4">
                     {[1, 2, 3].map(n => (
                         <div key={n} className="flex gap-4 p-4 bg-gray-50 rounded-2xl">
