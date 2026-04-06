@@ -80,7 +80,7 @@ export default function BecomeDisciple({ onBack }) {
 
   // Данные для первого шага
   const stepsInstructions = [
-    { title: "QUALIFY", text: "Are you at least 18 and do you claim Jesus as your Lord and Savior?" },
+    { title: "QUALIFY", text: "Are you at least 18 and do you claim Jesus as your Lord and Savior? If you answer YES to these questions, move on to Step 2" },
     { title: "LEARN", text: "Ask the Network 20 leader in your area to teach you all you need to know about the movement." },
     { title: "PRAY", text: "Ask God what six or fewer 18 to 29-year-old men He wants you to disciple." },
     { title: "REGISTER", text: "Join the movement for one year by clicking the below button and progressing through the registration steps." }
