@@ -134,7 +134,7 @@ export default function BecomeDisciple({ onBack }) {
                                 {n === 1 && "QUALIFY. Are you at least 18 and do you claim Jesus as your Lord and Savior?"}
                                 {n === 2 && "LEARN. Ask the Network 20 leader in your area to teach you all you need to know about the movement."}
                                 {n === 3 && "PRAY. Ask God what six or fewer 18 to 29-year-old men He wants you to disciple."}
-                                {n === 3 && "REGISTER. Join the movement for one year by clicking the below button and progressing through the registration steps."}
+                                {n === 4 && "REGISTER. Join the movement for one year by clicking the below button and progressing through the registration steps."}
                             </p>
                         </div>
                     ))}
