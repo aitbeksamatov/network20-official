@@ -78,6 +78,14 @@ export default function BecomeDisciple({ onBack }) {
 
   const progress = (step / (TOTAL_STEPS - 1)) * 100;
 
+  // Данные для первого шага
+  const stepsInstructions = [
+    { title: "QUALIFY", text: "Are you at least 18 and do you claim Jesus as your Lord and Savior?" },
+    { title: "LEARN", text: "Ask the Network 20 leader in your area to teach you all you need to know about the movement." },
+    { title: "PRAY", text: "Ask God what six or fewer 18 to 29-year-old men He wants you to disciple." },
+    { title: "REGISTER", text: "Join the movement for one year by clicking the below button and progressing through the registration steps." }
+  ];
+
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-white px-6 text-center">
@@ -125,21 +133,27 @@ export default function BecomeDisciple({ onBack }) {
             {/* ШАГ 0: HOW IT WORKS */}
             {step === 0 && (
               <div className="space-y-6">
-                <h1 className="text-3xl font-serif font-bold text-[#101828]">How do men join the Network 20 movement?</h1>
-                <div className="space-y-4">
-                    {[1, 2, 3].map(n => (
-                        <div key={n} className="flex gap-4 p-4 bg-gray-50 rounded-2xl">
-                            <span className="text-[#F4B433] font-bold">0{n}</span>
-                            <p className="text-sm text-gray-600">
-                                {n === 1 && "QUALIFY. Are you at least 18 and do you claim Jesus as your Lord and Savior?"}
-                                {n === 2 && "LEARN. Ask the Network 20 leader in your area to teach you all you need to know about the movement."}
-                                {n === 3 && "PRAY. Ask God what six or fewer 18 to 29-year-old men He wants you to disciple."}
-                                {n === 4 && "REGISTER. Join the movement for one year by clicking the below button and progressing through the registration steps."}
+                <div className="space-y-2">
+                  <h1 className="text-3xl font-serif font-bold text-[#101828] leading-tight">How do men join the movement?</h1>
+                  <p className="text-sm text-gray-400">Follow these simple steps to get started.</p>
+                </div>
+                
+                <div className="space-y-3">
+                    {stepsInstructions.map((item, idx) => (
+                        <div key={idx} className="group p-5 bg-gray-50 rounded-[24px] border border-gray-100 transition-all hover:bg-white hover:shadow-md">
+                            <span className="text-[#F4B433] text-[10px] font-black uppercase tracking-[0.2em] mb-2 block">
+                              Step 0{idx + 1}
+                            </span>
+                            <p className="text-[13px] leading-relaxed text-gray-600">
+                                <span className="font-black text-[#101828] mr-1">{item.title}.</span> 
+                                {item.text}
                             </p>
                         </div>
                     ))}
                 </div>
-                <PrimaryButton onClick={next}>I UNDERSTAND</PrimaryButton>
+                <div className="pt-2">
+                  <PrimaryButton onClick={next}>I UNDERSTAND</PrimaryButton>
+                </div>
               </div>
             )}
 
@@ -322,7 +336,6 @@ export default function BecomeDisciple({ onBack }) {
                             
                             <StyledInput placeholder="Full Name" value={d.name} onChange={e => updateDisciple(i, 'name', e.target.value)} />
                             
-                            {/* ИСПРАВЛЕННЫЙ ВВОД ВОЗРАСТА */}
                             <StyledInput 
                                 type="number" 
                                 min="1"
