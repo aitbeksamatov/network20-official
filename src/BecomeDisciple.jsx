@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckSquare, Square, ChevronLeft, Loader2, CheckCircle, Info } from 'lucide-react';
+import { CheckSquare, Square, ChevronLeft, Loader2, CheckCircle, Info, BookOpen } from 'lucide-react';
 import { toast, Toaster } from 'sonner';
 
 const STAGES = ['Eutychus', 'Timothy', 'Titus', 'Silas', 'Paul'];
-const TOTAL_STEPS = 9;
+const TOTAL_STEPS = 10;
 
 // --- УНИФИЦИРОВАННЫЕ КОМПОНЕНТЫ СТИЛЯ ---
 const StyledInput = (props) => (
@@ -37,8 +37,10 @@ export default function BecomeDisciple({ onBack }) {
     church: '', pastor: '',
     stage: '', count: '',
     disciples: [],
-    agreedToFaith: false,
-    agreedToRole: false,
+    // Состояния для трех соглашений
+    agreedToFaithDoc: false,
+    agreedToCommittment: false,
+    agreedToLord: false,
   });
 
   const next = () => setStep(s => s + 1);
@@ -78,9 +80,8 @@ export default function BecomeDisciple({ onBack }) {
 
   const progress = (step / (TOTAL_STEPS - 1)) * 100;
 
-  // Данные для первого шага
   const stepsInstructions = [
-    { title: "QUALIFY", text: "Are you at least 18 and do you claim Jesus as your Lord and Savior? If you answer YES to these questions, move on to Step 2" },
+    { title: "QUALIFY", text: "You are at least 18 and do you claim Jesus as your Lord and Savior." },
     { title: "LEARN", text: "Ask the Network 20 leader in your area to teach you all you need to know about the movement." },
     { title: "PRAY", text: "Ask God what six or fewer 18 to 29-year-old men He wants you to disciple." },
     { title: "REGISTER", text: "Join the movement for one year by clicking the below button and progressing through the registration steps." }
@@ -134,19 +135,15 @@ export default function BecomeDisciple({ onBack }) {
             {step === 0 && (
               <div className="space-y-6">
                 <div className="space-y-2">
-                  <h1 className="text-3xl font-serif font-bold text-[#101828] leading-tight">How do men join the movement?</h1>
+                  <h1 className="text-3xl font-serif font-bold text-[#101828] leading-tight">How do men join the Network 20 movement?</h1>
                   <p className="text-sm text-gray-400">Follow these simple steps to get started.</p>
                 </div>
-                
                 <div className="space-y-3">
                     {stepsInstructions.map((item, idx) => (
                         <div key={idx} className="group p-5 bg-gray-50 rounded-[24px] border border-gray-100 transition-all hover:bg-white hover:shadow-md">
-                            <span className="text-[#F4B433] text-[10px] font-black uppercase tracking-[0.2em] mb-2 block">
-                              Step {idx + 1}
-                            </span>
+                            <span className="text-[#F4B433] text-[10px] font-black uppercase tracking-[0.2em] mb-2 block">Step {idx + 1}</span>
                             <p className="text-[13px] leading-relaxed text-gray-600">
-                                <span className="font-black text-[#101828] mr-1">{item.title}.</span> 
-                                {item.text}
+                                <span className="font-black text-[#101828] mr-1">{item.title}.</span> {item.text}
                             </p>
                         </div>
                     ))}
@@ -157,20 +154,40 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 1: AGREEMENTS */}
+            {/* ШАГ 1: AGREEMENTS (ОБНОВЛЕННЫЙ) */}
             {step === 1 && (
               <div className="space-y-4">
-                <h1 className="text-3xl font-serif font-bold text-[#101828] mb-6">Agreements</h1>
+                <div className="mb-6">
+                  <h1 className="text-xl font-black text-[#101828] uppercase tracking-tight">Network 20 Statement of Faith</h1>
+                  <a 
+                    href="https://drive.google.com/file/d/1j5IL-0GDOjmlGUmxA5V8nrt6jIABamDV/view?usp=sharing" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-[#F4B433] font-bold mt-2 hover:underline"
+                  >
+                    <BookOpen size={18} /> View Document
+                  </a>
+                </div>
+
                 {[
-                    { k: 'agreedToFaith', t: 'I acknowledge Jesus as my Lord and Savior.' },
-                    { k: 'agreedToRole', t: 'I understand what it means to be a Network 20 disciple-maker.' }
+                    { k: 'agreedToFaithDoc', t: 'I read, understand, and agree with Network 20’s Statement of Faith.' },
+                    { k: 'agreedToCommittment', t: 'I am committed to being an excellent disciple-maker of young men.' },
+                    { k: 'agreedToLord', t: 'Jesus is my Lord and Savior.' }
                 ].map(item => (
-                    <button key={item.k} onClick={() => set(item.k, !form[item.k])} className="w-full p-5 bg-gray-50 rounded-2xl flex gap-4 text-left border border-transparent">
+                    <button key={item.k} onClick={() => set(item.k, !form[item.k])} className="w-full p-5 bg-gray-50 rounded-2xl flex gap-4 text-left border border-transparent transition-all">
                         {form[item.k] ? <CheckSquare className="text-[#F4B433]"/> : <Square className="text-gray-300"/>}
                         <span className="text-sm font-bold">{item.t}</span>
                     </button>
                 ))}
-                <PrimaryButton disabled={!form.agreedToFaith || !form.agreedToRole} onClick={next}>I AGREE</PrimaryButton>
+                
+                <div className="pt-4">
+                  <PrimaryButton 
+                    disabled={!form.agreedToFaithDoc || !form.agreedToCommittment || !form.agreedToLord} 
+                    onClick={next}
+                  >
+                    I AGREE
+                  </PrimaryButton>
+                </div>
               </div>
             )}
 
@@ -243,33 +260,25 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 6: YOUR STAGE */}
+            {/* ШАГ 6: STAGES INFO */}
             {step === 6 && (
-              <div className="space-y-4 pb-10">
-                <h1 className="text-3xl font-serif font-bold text-[#101828]">Your Stage</h1>
-                <div className="space-y-3">
-                  {[...STAGES, 'Barnabas']
-                    .filter(s => s !== 'Eutychus') 
-                    .map(s => (
-                    <button 
-                      key={s} 
-                      onClick={() => set('stage', s)} 
-                      className={`w-full p-5 rounded-2xl font-bold border-2 transition-all text-left flex justify-between items-center ${
-                        form.stage === s 
-                        ? 'border-[#F4B433] bg-[#F4B433]/5 text-[#101828]' 
-                        : 'border-gray-50 bg-gray-50 text-gray-400'
-                      }`}
-                    >
-                      {s}
-                      {form.stage === s && <div className="w-2 h-2 rounded-full bg-[#F4B433]" />}
-                    </button>
-                  ))}
+              <div className="space-y-6 pb-10">
+                <div className="space-y-4">
+                  <div className="p-3 bg-[#F4B433]/10 w-fit rounded-xl">
+                    <BookOpen className="text-[#F4B433]" size={24} />
+                  </div>
+                  <h1 className="text-2xl font-serif font-bold text-[#101828] leading-snug">Understanding Stages of Faith</h1>
+                  <p className="text-[14px] leading-relaxed text-gray-600">
+                    Network 20 disciple-makers uses <span className="text-[#101828] font-bold">“stages of faith”</span> labels to measure discipleship effectiveness. The disciple-makers encourage their guys to advance through the stages. 
+                  </p>
+                  <p className="text-[14px] leading-relaxed text-gray-600">
+                    Network 20 has assigned Biblical character names to the stages of faith. The characters are associated with Paul.
+                  </p>
                 </div>
-                <PrimaryButton disabled={!form.stage} onClick={next}>NEXT</PrimaryButton>
 
                 <div className="mt-8 border-t border-gray-100 pt-6">
-                  <h3 className="text-sm font-bold text-[#101828] mb-4 flex items-center gap-2">
-                    <Info size={16} className="text-[#F4B433]" /> Not sure which stage to choose?
+                  <h3 className="text-sm font-black text-[#101828] mb-4 flex items-center gap-2 uppercase tracking-wider">
+                    Following are the characters:
                   </h3>
                   <div className="space-y-3">
                     {STAGE_DETAILS.map((detail) => (
@@ -286,11 +295,75 @@ export default function BecomeDisciple({ onBack }) {
                     ))}
                   </div>
                 </div>
+                <PrimaryButton onClick={next}>CONTINUE</PrimaryButton>
               </div>
             )}
 
-            {/* ШАГ 7: COUNT */}
+            {/* ШАГ 7: YOUR STAGE */}
             {step === 7 && (
+              <div className="space-y-6 pb-10">
+                <div>
+                  <h1 className="text-2xl font-serif font-bold text-[#101828] leading-tight uppercase">
+                    Your Stage.
+                  </h1>
+                  <p className="text-lg font-serif font-bold text-gray-400 mt-1">
+                    Are you registering as a Paul or Barnabas?
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  {[
+                    { name: 'Paul', age: 'age 18-29' },
+                    { name: 'Barnabas', age: 'age 30 or older' }
+                  ].map(role => (
+                    <button 
+                      key={role.name} 
+                      onClick={() => set('stage', role.name)} 
+                      className={`w-full p-6 rounded-2xl border-2 transition-all text-left flex justify-between items-center ${
+                        form.stage === role.name 
+                        ? 'border-[#F4B433] bg-[#F4B433]/5 text-[#101828]' 
+                        : 'border-gray-50 bg-gray-50 text-gray-400'
+                      }`}
+                    >
+                      <div className="flex flex-col">
+                        <span className="text-xl font-bold">{role.name}</span>
+                        <span className={`text-[11px] font-black uppercase tracking-wider mt-1 ${form.stage === role.name ? 'text-[#F4B433]' : 'text-gray-300'}`}>
+                          ({role.age})
+                        </span>
+                      </div>
+                      {form.stage === role.name && <div className="w-3 h-3 rounded-full bg-[#F4B433]" />}
+                    </button>
+                  ))}
+                </div>
+
+                <PrimaryButton disabled={!form.stage} onClick={next}>NEXT</PrimaryButton>
+
+                <div className="mt-8 border-t border-gray-100 pt-6">
+                  <h3 className="text-sm font-black text-[#101828] mb-4 flex items-center gap-2 uppercase tracking-wider">
+                    Following are the characters:
+                  </h3>
+                  <div className="space-y-3">
+                    {STAGE_DETAILS
+                      .filter(d => d.title.includes('Paul') || d.title.includes('Barnabas'))
+                      .map((detail) => (
+                      <details key={detail.title} className="group bg-gray-50 rounded-2xl overflow-hidden transition-all">
+                        <summary className="list-none p-4 cursor-pointer flex justify-between items-center font-bold text-xs text-gray-600">
+                          {detail.title}
+                          <span className="text-[#F4B433] transition-transform group-open:rotate-180">↓</span>
+                        </summary>
+                        <div className="px-4 pb-4 text-[13px] leading-relaxed text-gray-500 space-y-3">
+                          <p>{detail.desc}</p>
+                          <p className="text-[11px] italic bg-white/50 p-2 rounded-lg border-l-2 border-[#F4B433]/30">{detail.history}</p>
+                        </div>
+                      </details>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ШАГ 8: COUNT */}
+            {step === 8 && (
               <div className="space-y-8">
                 <div className="text-center">
                   <h1 className="text-3xl font-serif font-bold text-[#101828] mb-2">How many disciples?</h1>
@@ -318,8 +391,8 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 8: DISCIPLE DETAILS */}
-            {step === 8 && (
+            {/* ШАГ 9: DISCIPLE DETAILS */}
+            {step === 9 && (
               <div className="pb-10">
                 <div className="mb-6">
                   <h1 className="text-3xl font-serif font-bold text-[#101828]">Disciple Details</h1>
@@ -384,26 +457,6 @@ export default function BecomeDisciple({ onBack }) {
                 >
                     COMPLETE REGISTRATION
                 </PrimaryButton>
-
-                <div className="mt-12 border-t border-gray-100 pt-8">
-                  <h3 className="text-sm font-bold text-[#101828] mb-4 flex items-center gap-2">
-                    <Info size={16} className="text-[#F4B433]" /> Not sure which stage to choose?
-                  </h3>
-                  <div className="space-y-3">
-                    {STAGE_DETAILS.map((detail) => (
-                      <details key={detail.title} className="group bg-gray-50 rounded-2xl overflow-hidden transition-all">
-                        <summary className="list-none p-4 cursor-pointer flex justify-between items-center font-bold text-xs text-gray-600">
-                          {detail.title}
-                          <span className="text-[#F4B433] transition-transform group-open:rotate-180">↓</span>
-                        </summary>
-                        <div className="px-4 pb-4 text-[13px] leading-relaxed text-gray-500 space-y-3">
-                          <p>{detail.desc}</p>
-                          <p className="text-[11px] italic bg-white/50 p-2 rounded-lg border-l-2 border-[#F4B433]/30">{detail.history}</p>
-                        </div>
-                      </details>
-                    ))}
-                  </div>
-                </div>
               </div>
             )}
           </motion.div>
