@@ -31,13 +31,12 @@ export default function BecomeDisciple({ onBack }) {
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
   const [form, setForm] = useState({
-    name: '', dob: '',
+    firstName: '', lastName: '', dob: '',
     email: '', countryCode: '+1', phone: '',
     country: '', city: '',
     church: '', pastor: '',
     stage: '', count: '',
     disciples: [],
-    // Состояния для трех соглашений
     agreedToFaithDoc: false,
     agreedToCommittment: false,
     agreedToLord: false,
@@ -154,7 +153,7 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 1: AGREEMENTS (ОБНОВЛЕННЫЙ) */}
+            {/* ШАГ 1: AGREEMENTS */}
             {step === 1 && (
               <div className="space-y-4">
                 <div className="mb-6">
@@ -192,29 +191,50 @@ export default function BecomeDisciple({ onBack }) {
             )}
 
             {/* ШАГ 2: PERSONAL INFO */}
-            {step === 2 && (
-              <div className="space-y-6">
-                <h1 className="text-3xl font-serif font-bold text-[#101828]">Personal Info</h1>
-                <div className="space-y-4">
-                    <StyledInput autoFocus placeholder="Full Name" value={form.name} onChange={e => set('name', e.target.value)} />
-                    <StyledInput 
-                        placeholder="Date of Birth (MM/DD/YYYY)" 
-                        value={form.dob} 
-                        onChange={e => {
-                            const input = e.target.value;
-                            if (input.length < form.dob.length) { set('dob', input); return; }
-                            let v = input.replace(/\D/g, '');
-                            let formatted = v;
-                            if (v.length > 2) formatted = v.slice(0, 2) + '/' + v.slice(2);
-                            if (v.length > 4) formatted = formatted.slice(0, 5) + '/' + v.slice(4, 8);
-                            set('dob', formatted);
-                        }}
-                        maxLength={10} 
-                    />
+              {step === 2 && (
+                <div className="space-y-6">
+                  <h1 className="text-3xl font-serif font-bold text-[#101828]">Personal Info</h1>
+                  <div className="space-y-4">
+                      {/* Имя и Фамилия раздельно */}
+                      <StyledInput 
+                        autoFocus 
+                        placeholder="First Name" 
+                        value={form.firstName} 
+                        onChange={e => set('firstName', e.target.value)} 
+                      />
+                      <StyledInput 
+                        placeholder="Last Name" 
+                        value={form.lastName} 
+                        onChange={e => set('lastName', e.target.value)} 
+                      />
+                      
+                      <StyledInput 
+                          placeholder="Date of Birth (MM/DD/YY)" 
+                          value={form.dob} 
+                          onChange={e => {
+                              const input = e.target.value;
+                              if (input.length < form.dob.length) { set('dob', input); return; }
+                              
+                              let v = input.replace(/\D/g, ''); 
+                              let formatted = v;
+                              
+                              if (v.length > 2) formatted = v.slice(0, 2) + '/' + v.slice(2);
+                              if (v.length > 4) formatted = formatted.slice(0, 5) + '/' + v.slice(4, 6);
+                              
+                              set('dob', formatted);
+                          }}
+                          maxLength={8} 
+                      />
+                  </div>
+                  {/* Кнопка теперь проверяет и имя, и фамилию */}
+                  <PrimaryButton 
+                    disabled={!form.firstName || !form.lastName || form.dob.length < 8} 
+                    onClick={next}
+                  >
+                    NEXT
+                  </PrimaryButton>
                 </div>
-                <PrimaryButton disabled={!form.name || form.dob.length < 10} onClick={next}>NEXT</PrimaryButton>
-              </div>
-            )}
+              )}
 
             {/* ШАГ 3: CONTACT INFO */}
             {step === 3 && (
@@ -457,6 +477,27 @@ export default function BecomeDisciple({ onBack }) {
                 >
                     COMPLETE REGISTRATION
                 </PrimaryButton>
+
+                {/* БЛОК С ОПИСАНИЕМ СТАДИЙ (ВОССТАНОВЛЕН) */}
+                <div className="mt-12 border-t border-gray-100 pt-8">
+                  <h3 className="text-sm font-black text-[#101828] mb-4 flex items-center gap-2 uppercase tracking-wider">
+                    Not sure which stage to choose?
+                  </h3>
+                  <div className="space-y-3">
+                    {STAGE_DETAILS.map((detail) => (
+                      <details key={detail.title} className="group bg-gray-50 rounded-2xl overflow-hidden transition-all">
+                        <summary className="list-none p-4 cursor-pointer flex justify-between items-center font-bold text-xs text-gray-600">
+                          {detail.title}
+                          <span className="text-[#F4B433] transition-transform group-open:rotate-180">↓</span>
+                        </summary>
+                        <div className="px-4 pb-4 text-[13px] leading-relaxed text-gray-500 space-y-3">
+                          <p>{detail.desc}</p>
+                          <p className="text-[11px] italic bg-white/50 p-2 rounded-lg border-l-2 border-[#F4B433]/30">{detail.history}</p>
+                        </div>
+                      </details>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
           </motion.div>
