@@ -61,7 +61,7 @@ const HomeView = ({ onStart }) => (
         <div className="absolute inset-0 bg-gradient-to-b from-[#101828]/90 via-transparent to-[#101828]/95"></div>
       </div>
       
-      <div className="relative z-10 pt-70 space-y-4 pl-6">
+      <div className="relative z-10 pt-70 mt-4 space-y-4 pl-6">
         <h2 className="text-[38px] leading-[1.0] font-serif font-bold italic">
           Men Discipling <br /> 
           <span className="text-[#F4B433] not-italic">Young Men</span>
