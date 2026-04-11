@@ -32,7 +32,7 @@ export default function BecomeDisciple({ onBack }) {
   const [done, setDone] = useState(false);
   const [form, setForm] = useState({
     firstName: '', lastName: '', dob: '',
-    email: '', countryCode: '+1', phone: '',
+    email: '', phone: '',
     country: '', city: '',
     church: '', pastor: '',
     stage: '', count: '',
@@ -159,7 +159,7 @@ export default function BecomeDisciple({ onBack }) {
                 <div className="mb-6">
                   <h1 className="text-xl font-black text-[#101828] uppercase tracking-tight">Network 20 Statement of Faith</h1>
                   <a 
-                    href="https://drive.google.com/file/d/1j5IL-0GDOjmlGUmxA5V8nrt6jIABamDV/view?usp=sharing" 
+                    href="https://drive.google.com/file/d/1TEBct4VOFgGx9ZHDdv6G3KI8HyehNH0l/view?usp=sharing" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-[#F4B433] font-bold mt-2 hover:underline"
@@ -237,25 +237,39 @@ export default function BecomeDisciple({ onBack }) {
               )}
 
             {/* ШАГ 3: CONTACT INFO */}
-            {step === 3 && (
-              <div className="space-y-6">
-                <div className="space-y-2">
-                    <h1 className="text-3xl font-serif font-bold text-[#101828]">Contact Info</h1>
-                    <p className="text-xs text-gray-400 font-medium">You can skip this or fill it in any format.</p>
-                </div>
-                <div className="space-y-4">
-                    <StyledInput type="email" placeholder="Email Address (Optional)" value={form.email} onChange={e => set('email', e.target.value)} />
-                    <div className="flex gap-2">
-                        <StyledInput className="w-20 text-center" placeholder="+1" value={form.countryCode} onChange={e => set('countryCode', e.target.value)} />
-                        <StyledInput className="flex-1" placeholder="Phone Number (Optional)" value={form.phone} onChange={e => set('phone', e.target.value)} />
+                {step === 3 && (
+                  <div className="space-y-6">
+                    <div className="space-y-2">
+                        <h1 className="text-3xl font-serif font-bold text-[#101828]">Contact Info</h1>
+                        <p className="text-xs text-gray-400 font-medium">You can skip this or fill it in any format.</p>
                     </div>
-                </div>
-                <PrimaryButton onClick={next}>
-                    {(!form.email && !form.phone) ? "SKIP FOR NOW" : "NEXT"}
-                </PrimaryButton>
-              </div>
-            )}
-
+                    <div className="space-y-4">
+                        {/* Поле Email */}
+                        <StyledInput 
+                          type="email" 
+                          placeholder="Email Address (Optional)" 
+                          value={form.email} 
+                          onChange={e => set('email', e.target.value)} 
+                        />
+                        
+                        {/* Единое поле для Телефона */}
+                        <StyledInput 
+                          type="tel" 
+                          placeholder="Phone Number (Optional)" 
+                          value={form.phone} 
+                          onChange={e => {
+                            const val = e.target.value;
+                            // Разрешаем только цифры и знак + в начале
+                            const filteredVal = val.replace(/[^\d+]/g, '');
+                            set('phone', filteredVal);
+                          }} 
+                        />
+                    </div>
+                    <PrimaryButton onClick={next}>
+                        {(!form.email && !form.phone) ? "NEXT" : ""}
+                    </PrimaryButton>
+                  </div>
+                )}
             {/* ШАГ 4: LOCATION */}
             {step === 4 && (
               <div className="space-y-6">
@@ -289,7 +303,7 @@ export default function BecomeDisciple({ onBack }) {
                   </div>
                   <h1 className="text-2xl font-serif font-bold text-[#101828] leading-snug">Understanding Stages of Faith</h1>
                   <p className="text-[14px] leading-relaxed text-gray-600">
-                    Network 20 disciple-makers uses <span className="text-[#101828] font-bold">“stages of faith”</span> labels to measure discipleship effectiveness. The disciple-makers encourage their guys to advance through the stages. 
+                    Network 20 disciple-makers use <span className="text-[#101828] font-bold">“stages of faith”</span> labels to measure discipleship effectiveness. The disciple-makers encourage their guys to advance through the stages. 
                   </p>
                   <p className="text-[14px] leading-relaxed text-gray-600">
                     Network 20 has assigned Biblical character names to the stages of faith. The characters are associated with Paul.
