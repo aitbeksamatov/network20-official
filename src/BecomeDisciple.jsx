@@ -266,7 +266,7 @@ export default function BecomeDisciple({ onBack }) {
                         />
                     </div>
                     <PrimaryButton onClick={next}>
-                        {(!form.email && !form.phone) ? "NEXT" : ""}
+                        {(!form.email && !form.phone) ? "SKIP FOR NOW" : "NEXT"}
                     </PrimaryButton>
                   </div>
                 )}
