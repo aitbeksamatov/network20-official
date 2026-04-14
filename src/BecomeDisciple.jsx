@@ -493,7 +493,6 @@ export default function BecomeDisciple({ onBack }) {
                 </div>
 
                 <PrimaryButton 
-                    {/* Кнопка активна, если у всех есть firstName, возраст и стадия */}
                     disabled={form.disciples.length === 0 || form.disciples.some(d => !d.firstName || !d.age || !d.stage)} 
                     onClick={handleSubmit}
                 >
