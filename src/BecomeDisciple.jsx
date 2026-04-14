@@ -24,7 +24,7 @@ const PrimaryButton = ({ children, onClick, disabled, className }) => (
   </button>
 );
 
-const emptyDisciple = () => ({ name: '', age: '', stage: '' });
+const emptyDisciple = () => ({ firstName: '', lastName: '', age: '', stage: '' });
 
 export default function BecomeDisciple({ onBack }) {
   const [step, setStep] = useState(0);
@@ -191,85 +191,80 @@ export default function BecomeDisciple({ onBack }) {
             )}
 
             {/* ШАГ 2: PERSONAL INFO */}
-              {step === 2 && (
-                <div className="space-y-6">
-                  <h1 className="text-3xl font-serif font-bold text-[#101828]">Personal Info</h1>
-                  <div className="space-y-4">
-                      {/* Имя и Фамилия раздельно */}
-                      <StyledInput 
-                        autoFocus 
-                        placeholder="First Name" 
-                        value={form.firstName} 
-                        onChange={e => set('firstName', e.target.value)} 
-                      />
-                      <StyledInput 
-                        placeholder="Last Name" 
-                        value={form.lastName} 
-                        onChange={e => set('lastName', e.target.value)} 
-                      />
-                      
-                      <StyledInput 
-                          placeholder="Date of Birth (MM/DD/YY)" 
-                          value={form.dob} 
-                          onChange={e => {
-                              const input = e.target.value;
-                              if (input.length < form.dob.length) { set('dob', input); return; }
-                              
-                              let v = input.replace(/\D/g, ''); 
-                              let formatted = v;
-                              
-                              if (v.length > 2) formatted = v.slice(0, 2) + '/' + v.slice(2);
-                              if (v.length > 4) formatted = formatted.slice(0, 5) + '/' + v.slice(4, 6);
-                              
-                              set('dob', formatted);
-                          }}
-                          maxLength={8} 
-                      />
-                  </div>
-                  {/* Кнопка теперь проверяет и имя, и фамилию */}
-                  <PrimaryButton 
-                    disabled={!form.firstName || !form.lastName || form.dob.length < 8} 
-                    onClick={next}
-                  >
-                    NEXT
-                  </PrimaryButton>
+            {step === 2 && (
+              <div className="space-y-6">
+                <h1 className="text-3xl font-serif font-bold text-[#101828]">Personal Info</h1>
+                <div className="space-y-4">
+                    <StyledInput 
+                      autoFocus 
+                      placeholder="First Name" 
+                      value={form.firstName} 
+                      onChange={e => set('firstName', e.target.value)} 
+                    />
+                    <StyledInput 
+                      placeholder="Last Name" 
+                      value={form.lastName} 
+                      onChange={e => set('lastName', e.target.value)} 
+                    />
+                    
+                    <StyledInput 
+                        placeholder="Date of Birth (MM/DD/YY)" 
+                        value={form.dob} 
+                        onChange={e => {
+                            const input = e.target.value;
+                            if (input.length < form.dob.length) { set('dob', input); return; }
+                            
+                            let v = input.replace(/\D/g, ''); 
+                            let formatted = v;
+                            
+                            if (v.length > 2) formatted = v.slice(0, 2) + '/' + v.slice(2);
+                            if (v.length > 4) formatted = formatted.slice(0, 5) + '/' + v.slice(4, 6);
+                            
+                            set('dob', formatted);
+                        }}
+                        maxLength={8} 
+                    />
                 </div>
-              )}
+                <PrimaryButton 
+                  disabled={!form.firstName || !form.lastName || form.dob.length < 8} 
+                  onClick={next}
+                >
+                  NEXT
+                </PrimaryButton>
+              </div>
+            )}
 
             {/* ШАГ 3: CONTACT INFO */}
-                {step === 3 && (
-                  <div className="space-y-6">
-                    <div className="space-y-2">
-                        <h1 className="text-3xl font-serif font-bold text-[#101828]">Contact Info</h1>
-                        <p className="text-xs text-gray-400 font-medium">You can skip this or fill it in any format.</p>
-                    </div>
-                    <div className="space-y-4">
-                        {/* Поле Email */}
-                        <StyledInput 
-                          type="email" 
-                          placeholder="Email Address (Optional)" 
-                          value={form.email} 
-                          onChange={e => set('email', e.target.value)} 
-                        />
-                        
-                        {/* Единое поле для Телефона */}
-                        <StyledInput 
-                          type="tel" 
-                          placeholder="Phone Number (Optional)" 
-                          value={form.phone} 
-                          onChange={e => {
-                            const val = e.target.value;
-                            // Разрешаем только цифры и знак + в начале
-                            const filteredVal = val.replace(/[^\d+]/g, '');
-                            set('phone', filteredVal);
-                          }} 
-                        />
-                    </div>
-                    <PrimaryButton onClick={next}>
-                        {(!form.email && !form.phone) ? "SKIP FOR NOW" : "NEXT"}
-                    </PrimaryButton>
-                  </div>
-                )}
+            {step === 3 && (
+              <div className="space-y-6">
+                <div className="space-y-2">
+                    <h1 className="text-3xl font-serif font-bold text-[#101828]">Contact Info</h1>
+                    <p className="text-xs text-gray-400 font-medium">You can skip this or fill it in any format.</p>
+                </div>
+                <div className="space-y-4">
+                    <StyledInput 
+                      type="email" 
+                      placeholder="Email Address (Optional)" 
+                      value={form.email} 
+                      onChange={e => set('email', e.target.value)} 
+                    />
+                    <StyledInput 
+                      type="tel" 
+                      placeholder="Phone Number (Optional)" 
+                      value={form.phone} 
+                      onChange={e => {
+                        const val = e.target.value;
+                        const filteredVal = val.replace(/[^\d+]/g, '');
+                        set('phone', filteredVal);
+                      }} 
+                    />
+                </div>
+                <PrimaryButton onClick={next}>
+                    {(!form.email && !form.phone) ? "SKIP FOR NOW" : "NEXT"}
+                </PrimaryButton>
+              </div>
+            )}
+
             {/* ШАГ 4: LOCATION */}
             {step === 4 && (
               <div className="space-y-6">
@@ -438,10 +433,22 @@ export default function BecomeDisciple({ onBack }) {
                         <div key={i} className="p-6 bg-gray-50 rounded-[32px] space-y-4 border border-gray-100">
                             <div className="flex justify-between items-center">
                               <p className="text-[10px] font-black text-[#F4B433] uppercase">Disciple #{i+1}</p>
-                              {d.name && d.stage && d.age && <CheckCircle size={14} className="text-green-500" />}
+                              {/* Last Name теперь не обязателен для появления галочки */}
+                              {d.firstName && d.stage && d.age && <CheckCircle size={14} className="text-green-500" />}
                             </div>
                             
-                            <StyledInput placeholder="Full Name" value={d.name} onChange={e => updateDisciple(i, 'name', e.target.value)} />
+                            <div className="grid grid-cols-2 gap-3">
+                              <StyledInput 
+                                placeholder="First Name" 
+                                value={d.firstName} 
+                                onChange={e => updateDisciple(i, 'firstName', e.target.value)} 
+                              />
+                              <StyledInput 
+                                placeholder="Last Name (Optional)" 
+                                value={d.lastName} 
+                                onChange={e => updateDisciple(i, 'lastName', e.target.value)} 
+                              />
+                            </div>
                             
                             <StyledInput 
                                 type="number" 
@@ -486,13 +493,13 @@ export default function BecomeDisciple({ onBack }) {
                 </div>
 
                 <PrimaryButton 
-                    disabled={form.disciples.length === 0 || form.disciples.some(d => !d.name || !d.age || !d.stage)} 
+                    {/* Кнопка активна, если у всех есть firstName, возраст и стадия */}
+                    disabled={form.disciples.length === 0 || form.disciples.some(d => !d.firstName || !d.age || !d.stage)} 
                     onClick={handleSubmit}
                 >
                     COMPLETE REGISTRATION
                 </PrimaryButton>
 
-                {/* БЛОК С ОПИСАНИЕМ СТАДИЙ (ВОССТАНОВЛЕН) */}
                 <div className="mt-12 border-t border-gray-100 pt-8">
                   <h3 className="text-sm font-black text-[#101828] mb-4 flex items-center gap-2 uppercase tracking-wider">
                     Not sure which stage to choose?

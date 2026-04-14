@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Video, FileText, Headphones, Download, ExternalLink, ChevronRight } from 'lucide-react';
+import { BookOpen, Download, ExternalLink } from 'lucide-react';
 
 const categories = [
   {
@@ -8,18 +8,6 @@ const categories = [
     title: 'Equipment Materials',
     description: 'Comprehensive guides for individual and group sessions.',
     items: ['Foundations of Faith', 'Gospel of John Deep Dive', 'Spiritual Disciplines'],
-  },
-  {
-    icon: Video,
-    title: 'Video Training',
-    description: 'Video curriculum for equipping disciple-makers.',
-    items: ['Intro to Discipleship', 'Leading Small Groups', 'Youth Methods'],
-  },
-  {
-    icon: FileText,
-    title: 'Printable Docs',
-    description: 'Ready-to-print materials for your sessions.',
-    items: ['Discussion Cards', 'Scripture Memory', 'Prayer Journal'],
   },
 ];
 
@@ -38,9 +26,9 @@ export default function Equipment({ onContactClick }) {
         </div>
         <div className="relative z-10">
           <span className="text-[#F4B433] text-[10px] font-black uppercase tracking-[0.3em] mb-3 block">Resources</span>
-          <h2 className="text-4xl font-serif font-bold mb-4">Equipment & <br/>Materials</h2>
+          <h2 className="text-4xl font-serif font-bold mb-4">Equipment <br/>Materials</h2>
           <p className="text-gray-300 text-xs max-w-[240px] leading-relaxed opacity-80">
-            Everything you need to effectively disciple others in one place.
+            Lessons to help you make disciples.
           </p>
         </div>
       </section>
@@ -92,7 +80,7 @@ export default function Equipment({ onContactClick }) {
           {/* Декоративный круг */}
           <div className="absolute -right-10 -top-10 w-32 h-32 bg-[#F4B433]/10 rounded-full blur-2xl"></div>
           
-          <h3 className="text-white font-serif text-xl font-bold mb-3 relative z-10">Need Custom Materials?</h3>
+          <h3 className="text-white font-serif text-xl font-bold mb-3 relative z-10">Want more?</h3>
           <p className="text-gray-400 text-xs mb-8 relative z-10 leading-relaxed">
             We develop tailored resources for your specific context and culture.
           </p>
