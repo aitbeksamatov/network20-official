@@ -137,7 +137,7 @@ export default function Equipment({ onContactClick }) {
           
           <h3 className="text-white font-serif text-xl font-bold mb-3 relative z-10">Want more?</h3>
           <p className="text-gray-400 text-xs mb-8 relative z-10 leading-relaxed">
-            We want to hear about your needs for disciple-making materials.
+            We want to hear about your needs for <br />disciple-making materials.
           </p>
           <button 
             onClick={onContactClick}
