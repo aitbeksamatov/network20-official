@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 import { toast, Toaster } from 'sonner';
 
 const contactInfo = [
-  { icon: Mail, label: 'Email Us', value: 'garywybenga@n20i.org', detail: 'Response within 24h' },
+  { icon: Mail, label: 'Email Us', value: 'contact@n20i.org', detail: 'Response within 24h' },
   { icon: Phone, label: 'Call Us', value: '+1 (616) 260-7564', detail: 'Mon–Fri, 9am–5pm' },
   { icon: MapPin, label: 'Visit Us', value: '150 Wealthy Street SE', detail: 'By appointment only' },
 ];
@@ -67,7 +67,7 @@ export default function Contacts() {
         <div className="relative z-10">
           <span className="text-[#F4B433] text-[10px] font-black uppercase tracking-[0.3em] mb-4 block">Reach Out</span>
           <h2 className="text-5xl font-serif font-bold mb-4">Contact Us</h2>
-          <p className="text-gray-300 text-sm max-w-xs opacity-80">We are here to support your journey and answer any questions.</p>
+          <p className="text-gray-300 text-sm max-w-xs opacity-80">We are eager to hear from you and answer your questions.</p>
         </div>
       </section>
 
