@@ -30,7 +30,7 @@ export default function Contacts() {
 
     // Данные твоего бота
     const BOT_TOKEN = '8599268249:AAEbq6WJLqA0kjUoRxCwDumQG8R9Uk9C0aY';
-    const CHAT_ID = '8599854731';
+    const CHAT_ID = '-5275746610';
     
     // Формируем текст для Telegram (используем Markdown для красоты)
     const text = `🚀 *New Contact Message*\n\n👤 *Name:* ${form.name}\n📧 *Email:* ${form.email}\n📌 *Subject:* ${form.subject}\n💬 *Message:* ${form.message}`;
