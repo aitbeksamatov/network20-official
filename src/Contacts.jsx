@@ -9,7 +9,6 @@ const contactInfo = [
   { icon: MapPin, label: 'Visit Us', value: '150 Wealthy Street SE', detail: 'By appointment only' },
 ];
 
-// Вспомогательные компоненты (вне основного, чтобы не терять фокус)
 const ContactInput = ({ label, ...props }) => (
   <div className="w-full">
     <label className="text-[10px] font-black uppercase text-gray-400 mb-1.5 block ml-1">{label}</label>
@@ -22,12 +21,43 @@ const ContactInput = ({ label, ...props }) => (
 
 export default function Contacts() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    toast.success('Message sent! We will contact you soon.');
+    setLoading(true);
+
+    // Данные твоего бота
+    const BOT_TOKEN = '8599268249:AAEbq6WJLqA0kjUoRxCwDumQG8R9Uk9C0aY';
+    const CHAT_ID = '8599854731';
+    
+    // Формируем текст для Telegram (используем Markdown для красоты)
+    const text = `🚀 *New Contact Message*\n\n👤 *Name:* ${form.name}\n📧 *Email:* ${form.email}\n📌 *Subject:* ${form.subject}\n💬 *Message:* ${form.message}`;
+
+    try {
+      const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: text,
+          parse_mode: 'Markdown',
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        toast.success('Message sent! We will contact you soon.');
+      } else {
+        throw new Error('Telegram API error');
+      }
+    } catch (error) {
+      toast.error('Failed to send message. Please try again later.');
+      console.error('Submission error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -125,10 +155,11 @@ export default function Contacts() {
             </div>
             <button 
               type="submit"
-              className="w-full py-5 rounded-2xl bg-[#101828] text-white font-bold text-sm flex items-center justify-center gap-3 shadow-xl active:scale-95 transition-all mt-4"
+              disabled={loading}
+              className="w-full py-5 rounded-2xl bg-[#101828] text-white font-bold text-sm flex items-center justify-center gap-3 shadow-xl active:scale-95 transition-all mt-4 disabled:opacity-50"
             >
               <Send size={18} className="text-[#F4B433]" />
-              SEND MESSAGE
+              {loading ? 'SENDING...' : 'SEND MESSAGE'}
             </button>
           </form>
         </div>
