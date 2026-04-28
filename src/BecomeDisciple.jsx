@@ -61,7 +61,7 @@ export default function BecomeDisciple({ onBack }) {
 
   const handleSubmit = async () => {
     setLoading(true);
-    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyceWoQpS90vHxwtajK_L2Fza64P0W5qK7hopPnTCUmq9mBda7hHE3pPPbehcF4cO18/exec';
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx1PEUzfOxy5NLmn2G5b-23LSbB1Al1SgyXNzK2dj9WOfX3kVAET22RiesdJ_7x0BnmlQ/exec';
     try {
       await fetch(WEB_APP_URL, {
         method: 'POST',
