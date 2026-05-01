@@ -9,6 +9,13 @@ const categories = [
     description: 'Monthly 4-part deep dives into essential disciple-making topics.',
     items: [
       {
+        title: 'Elijah & Elisha',
+        author: 'Adnan Daniel',
+        month: 'May 2026',
+        link: 'https://drive.google.com/drive/folders/15PaV-jGNWFkk5hnocCzhxJ9zoKQT4BUJ?usp=sharing', // Твоя ссылка здесь
+        description: 'Being, making, and multiplying disciples with you.'
+      },
+      {
         title: 'Jesus Said "I Am"',
         author: 'Pastor Yepabo',
         month: 'April 2026',
@@ -20,13 +27,6 @@ const categories = [
         author: 'Aitbek Samatov',
         month: 'March 2026',
         link: 'https://drive.google.com/drive/folders/1t3nhKbcPqCO_FzKeDAtcw2gf1kqh0GYL?usp=sharing', // Твоя ссылка здесь
-        description: 'Being, making, and multiplying disciples with you.'
-      },
-      {
-        title: 'Integrity',
-        author: 'Patrick Milazi ',
-        month: 'February 2026',
-        link: 'https://drive.google.com/drive/folders/15t8C9OIaZtalTBBPDDwRS8HivcMFM9Fj?usp=sharing', // Твоя ссылка здесь
         description: 'Being, making, and multiplying disciples with you.'
       }
     ],

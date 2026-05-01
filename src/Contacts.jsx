@@ -6,7 +6,7 @@ import { toast, Toaster } from 'sonner';
 const contactInfo = [
   { icon: Mail, label: 'Email Us', value: 'contact@n20i.org', detail: 'Response within 24h' },
   { icon: Phone, label: 'Call Us', value: '+1 (616) 260-7564', detail: 'Mon–Fri, 9am–5pm' },
-  { icon: MapPin, label: 'Visit Us', value: '150 Wealthy Street SE', detail: 'By appointment only' },
+  { icon: MapPin, label: 'Visit Us', value: '150 Wealthy SE Unit 356 Grand Rapids MI 49503', detail: 'By appointment only' },
 ];
 
 const ContactInput = ({ label, ...props }) => (
