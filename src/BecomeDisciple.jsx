@@ -190,49 +190,45 @@ export default function BecomeDisciple({ onBack }) {
               </div>
             )}
 
-            {/* ШАГ 2: PERSONAL INFO */}
-            {step === 2 && (
-              <div className="space-y-6">
-                <h1 className="text-3xl font-serif font-bold text-[#101828]">Personal Info</h1>
-                <div className="space-y-4">
-                    <StyledInput 
-                      autoFocus 
-                      placeholder="First Name" 
-                      value={form.firstName} 
-                      onChange={e => set('firstName', e.target.value)} 
-                    />
-                    <StyledInput 
-                      placeholder="Last Name" 
-                      value={form.lastName} 
-                      onChange={e => set('lastName', e.target.value)} 
-                    />
-                    
-                    <StyledInput 
-                        placeholder="Date of Birth (MM/DD/YY)" 
-                        value={form.dob} 
-                        onChange={e => {
-                            const input = e.target.value;
-                            if (input.length < form.dob.length) { set('dob', input); return; }
-                            
-                            let v = input.replace(/\D/g, ''); 
-                            let formatted = v;
-                            
-                            if (v.length > 2) formatted = v.slice(0, 2) + '/' + v.slice(2);
-                            if (v.length > 4) formatted = formatted.slice(0, 5) + '/' + v.slice(4, 6);
-                            
-                            set('dob', formatted);
-                        }}
-                        maxLength={8} 
-                    />
-                </div>
-                <PrimaryButton 
-                  disabled={!form.firstName || !form.lastName || form.dob.length < 8} 
-                  onClick={next}
-                >
-                  NEXT
-                </PrimaryButton>
-              </div>
-            )}
+{/* ШАГ 2: PERSONAL INFO */}
+{step === 2 && (
+  <div className="space-y-6">
+    <h1 className="text-3xl font-serif font-bold text-[#101828]">Personal Info</h1>
+    <div className="space-y-4">
+        <StyledInput 
+          autoFocus 
+          placeholder="First Name" 
+          value={form.firstName} 
+          onChange={e => set('firstName', e.target.value)} 
+        />
+        <StyledInput 
+          placeholder="Last Name" 
+          value={form.lastName} 
+          onChange={e => set('lastName', e.target.value)} 
+        />
+        
+        <StyledInput 
+            placeholder="Age" 
+            type="text"
+            inputMode="numeric" 
+            value={form.dob} // Оставляем ключ 'dob', чтобы не менять остальной код, но храним там возраст
+            onChange={e => {
+                const value = e.target.value;
+                // Разрешаем только цифры и ограничиваем длину (например, до 3 символов)
+                if (/^\d*$/.test(value) && value.length <= 3) {
+                    set('dob', value);
+                }
+            }}
+        />
+    </div>
+    <PrimaryButton 
+      disabled={!form.firstName || !form.lastName || !form.dob} 
+      onClick={next}
+    >
+      NEXT
+    </PrimaryButton>
+  </div>
+)}
 
             {/* ШАГ 3: CONTACT INFO */}
             {step === 3 && (
