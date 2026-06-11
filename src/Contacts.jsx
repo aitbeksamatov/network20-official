@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
 import { toast, Toaster } from 'sonner';
 
 const contactInfo = [
-  { icon: Mail, label: 'Email Us', value: 'contact@n20i.org', detail: 'Response within 24h' },
+  { icon: Mail, label: 'Email Us', value: 'info@n20i.org', detail: 'Response within 24h' },
   { icon: Phone, label: 'Call Us', value: '+1 (616) 260-7564', detail: 'Mon–Fri, 9am–5pm' },
   { icon: MapPin, label: 'Visit Us', value: '150 Wealthy SE Unit 356 Grand Rapids MI 49503', detail: 'By appointment only' },
 ];
 
 const ContactInput = ({ label, ...props }) => (
-  <div className="w-full">
+  <div className="w-full box-border">
     <label className="text-[10px] font-black uppercase text-gray-400 mb-1.5 block ml-1">{label}</label>
     <input 
       {...props} 
-      className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F4B433]/20 focus:border-[#F4B433] transition-all"
+      /* ИЗМЕНЕНО: вместо text-sm ставим text-base (16px) */
+      className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-4 py-3.5 text-base focus:outline-none focus:ring-2 focus:ring-[#F4B433]/20 focus:border-[#F4B433] transition-all box-border"
     />
   </div>
 );
@@ -28,11 +29,9 @@ export default function Contacts() {
     e.preventDefault();
     setLoading(true);
 
-    // Данные твоего бота
     const BOT_TOKEN = '8599268249:AAEbq6WJLqA0kjUoRxCwDumQG8R9Uk9C0aY';
     const CHAT_ID = '-5275746610';
     
-    // Формируем текст для Telegram (используем Markdown для красоты)
     const text = `🚀 *New Contact Message*\n\n👤 *Name:* ${form.name}\n📧 *Email:* ${form.email}\n📌 *Subject:* ${form.subject}\n💬 *Message:* ${form.message}`;
 
     try {
@@ -63,8 +62,8 @@ export default function Contacts() {
   if (submitted) {
     return (
       <motion.div 
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-        className="min-h-[60vh] flex flex-col items-center justify-center px-8 text-center"
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        className="min-h-[60vh] flex flex-col items-center justify-center px-8 text-center box-border w-full"
       >
         <div className="w-20 h-20 rounded-3xl bg-green-50 flex items-center justify-center mb-6">
           <CheckCircle className="w-10 h-10 text-green-500" />
@@ -73,7 +72,7 @@ export default function Contacts() {
         <p className="text-gray-500 text-sm">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
         <button 
           onClick={() => setSubmitted(false)}
-          className="mt-8 text-[#F4B433] font-bold text-sm uppercase tracking-widest"
+          className="mt-8 text-[#F4B433] font-bold text-sm uppercase tracking-widest active:scale-95 transition-transform"
         >
           Send another message
         </button>
@@ -82,11 +81,11 @@ export default function Contacts() {
   }
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 pb-12">
+    <div className="animate-in fade-in duration-500 pb-12 w-full box-border overflow-x-hidden">
       <Toaster position="top-center" />
       
       {/* Hero Section */}
-      <section className="relative h-[350px] flex flex-col justify-center items-center px-8 text-center text-white">
+      <section className="relative h-[320px] flex flex-col justify-center items-center px-6 text-center text-white box-border w-full">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80" 
@@ -94,32 +93,34 @@ export default function Contacts() {
           />
           <div className="absolute inset-0 bg-[#101828]/85 backdrop-blur-[2px]"></div>
         </div>
-        <div className="relative z-10">
-          <span className="text-[#F4B433] text-[10px] font-black uppercase tracking-[0.3em] mb-4 block">Reach Out</span>
-          <h2 className="text-5xl font-serif font-bold mb-4">Contact Us</h2>
-          <p className="text-gray-300 text-sm max-w-xs opacity-80">We are eager to hear from you and answer your questions.</p>
+        <div className="relative z-10 w-full">
+          <span className="text-[#F4B433] text-[10px] font-black uppercase tracking-[0.3em] mb-3 block">Reach Out</span>
+          <h2 className="text-4xl font-serif font-bold mb-3">Contact Us</h2>
+          <p className="text-gray-300 text-sm max-w-xs opacity-80 mx-auto">We are eager to hear from you and answer your questions.</p>
         </div>
       </section>
 
-      {/* Contact Cards */}
-      <section className="px-6 -mt-10 relative z-20 overflow-x-auto flex gap-4 pb-4 no-scrollbar">
+      {/* Contact Cards (Вертикальная сетка вместо ломающего скролла) */}
+      <section className="px-6 -mt-10 relative z-20 flex flex-col gap-3 w-full box-border">
         {contactInfo.map((item) => (
-          <div key={item.label} className="min-w-[240px] bg-white p-6 rounded-[32px] shadow-xl shadow-black/5 border border-gray-50">
-            <div className="w-12 h-12 rounded-2xl bg-[#F4B433]/10 flex items-center justify-center mb-4">
+          <div key={item.label} className="w-full bg-white p-5 rounded-[28px] shadow-xl shadow-black/5 border border-gray-50 box-border flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-[#F4B433]/10 flex items-center justify-center shrink-0">
               <item.icon className="w-6 h-6 text-[#F4B433]" />
             </div>
-            <p className="font-black text-[10px] uppercase text-gray-400 mb-1">{item.label}</p>
-            <p className="font-bold text-[#101828] text-sm mb-1">{item.value}</p>
-            <p className="text-[11px] text-gray-400">{item.detail}</p>
+            <div className="flex-1 min-w-0">
+              <p className="font-black text-[9px] uppercase text-gray-400 mb-0.5">{item.label}</p>
+              <p className="font-bold text-[#101828] text-sm mb-0.5 break-words whitespace-normal">{item.value}</p>
+              <p className="text-[11px] text-gray-400">{item.detail}</p>
+            </div>
           </div>
         ))}
       </section>
 
       {/* Form Section */}
-      <section className="px-6 mt-12">
-        <div className="bg-white rounded-[40px] p-8 border border-gray-100 shadow-sm">
-          <h3 className="text-2xl font-serif font-bold text-[#101828] mb-8">Send a Message</h3>
-          <form onSubmit={handleSubmit} className="space-y-5">
+      <section className="px-6 mt-8 w-full box-border">
+        <div className="bg-white rounded-[32px] p-6 border border-gray-100 shadow-sm box-border w-full">
+          <h3 className="text-xl font-serif font-bold text-[#101828] mb-6">Send a Message</h3>
+          <form onSubmit={handleSubmit} className="space-y-4 w-full box-border">
             <ContactInput 
               label="Full Name" 
               placeholder="Enter your name"
@@ -142,7 +143,7 @@ export default function Contacts() {
               onChange={e => setForm({...form, subject: e.target.value})}
               required
             />
-            <div className="w-full">
+            <div className="w-full box-border">
               <label className="text-[10px] font-black uppercase text-gray-400 mb-1.5 block ml-1">Message</label>
               <textarea 
                 rows={4}
@@ -150,13 +151,14 @@ export default function Contacts() {
                 placeholder="Write your message here..."
                 value={form.message}
                 onChange={e => setForm({...form, message: e.target.value})}
-                className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#F4B433]/20 focus:border-[#F4B433] transition-all resize-none"
+                /* ИЗМЕНЕНО: здесь тоже ставим text-base (16px) */
+                className="w-full bg-gray-50 border border-gray-100 rounded-2xl px-4 py-3.5 text-base focus:outline-none focus:ring-2 focus:ring-[#F4B433]/20 focus:border-[#F4B433] transition-all resize-none box-border"
               />
             </div>
             <button 
               type="submit"
               disabled={loading}
-              className="w-full py-5 rounded-2xl bg-[#101828] text-white font-bold text-sm flex items-center justify-center gap-3 shadow-xl active:scale-95 transition-all mt-4 disabled:opacity-50"
+              className="w-full py-4 rounded-2xl bg-[#101828] text-white font-bold text-sm flex items-center justify-center gap-3 shadow-xl active:scale-95 transition-all mt-2 disabled:opacity-50 box-border"
             >
               <Send size={18} className="text-[#F4B433]" />
               {loading ? 'SENDING...' : 'SEND MESSAGE'}

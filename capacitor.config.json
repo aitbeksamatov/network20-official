@@ -1,0 +1,13 @@
+{
+  "appId": "org.network20.app",
+  "appName": "Network 20 International",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0,
+      "launchAutoHide": true,
+      "splashFullScreen": false,
+      "splashImmersive": false
+    }
+  }
+}

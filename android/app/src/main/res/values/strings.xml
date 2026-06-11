@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Network 20 International</string>
+    <string name="title_activity_main">Network 20 International</string>
+    <string name="package_name">org.network20.app</string>
+    <string name="custom_url_scheme">org.network20.app</string>
+</resources>

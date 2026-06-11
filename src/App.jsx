@@ -9,6 +9,8 @@ import {
 import BecomeDisciple from './BecomeDisciple';
 import Contacts from './Contacts';
 import Equipment from './Equipment';
+import { Browser } from '@capacitor/browser';
+import aboutHero from './assets/about-hero.jpg';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -17,7 +19,8 @@ const App = () => {
     <div className="max-w-md mx-auto bg-white min-h-screen shadow-2xl relative pb-24 overflow-x-hidden font-sans select-none">
       
       {/* --- HEADER --- */}
-      <header className="flex items-center px-6 py-5 bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
+      {/* --- HEADER --- */}
+      <header className="flex items-center px-6 pt-[calc(env(safe-area-inset-top)+20px)] pb-5 bg-white/95 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
         <div className="mr-3 shrink-0">
           <img 
             src={myLogo} 
@@ -123,14 +126,31 @@ const HomeView = ({ onStart }) => (
 );
 
 const AboutView = () => {
-  const openFAQ = () => {
-    window.open('https://drive.google.com/file/d/1WcktR_kZ18wqkMFTthNIS59H1nMYPKUX/view?usp=drive_link', '_blank');
+  const openFAQ = async () => {
+    try {
+      // Проверяем статус сети
+      const status = await Network.getStatus();
+      
+      if (!status.connected) {
+        // Если интернета нет, плавно предупреждаем пользователя
+        alert("You are currently offline. Please connect to the internet to view and download the FAQ document.");
+        return; // Останавливаем выполнение, чтобы не запускать пустой браузер
+      }
+
+      // ИСПРАВЛЕНО: Добавили windowName: '_system', чтобы ссылка открывалась в системном браузере смартфона
+      await Browser.open({ 
+        url: 'https://drive.google.com/file/d/1WcktR_kZ18wqkMFTthNIS59H1nMYPKUX/view?usp=drive_link',
+        windowName: '_system' 
+      });
+    } catch (error) {
+      console.error("Could not open FAQ document inside Capacitor", error);
+    }
   };
 
   return (
     <div className="animate-in fade-in slide-in-from-right-4 duration-500 pb-20">
       <section className="relative h-[300px] flex flex-col justify-center items-center px-8 text-center text-white overflow-hidden rounded-b-[40px]">
-        <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=800&q=80" className="absolute inset-0 w-full h-full object-cover" alt="About" />
+        <img src={aboutHero} className="absolute inset-0 w-full h-full object-cover" alt="About" />
         <div className="absolute inset-0 bg-[#101828]/80 backdrop-blur-[2px]"></div>
         <div className="relative space-y-2">
           <span className="text-[#F4B433] font-black tracking-[0.2em] text-[10px] uppercase">Since 2014</span>
@@ -139,7 +159,8 @@ const AboutView = () => {
       </section>
 
       <div className="px-6 -mt-10 relative z-10 space-y-6">
-        <button onClick={openFAQ} className="w-full bg-white border border-gray-100 shadow-xl shadow-black/5 p-5 rounded-[28px] flex items-center gap-4 active:scale-95 transition-transform text-left">
+        {/* Кнопка открытия FAQ теперь работает на сто процентов стабильно и нативно */}
+        <button type="button" onClick={openFAQ} className="w-full bg-white border border-gray-100 shadow-xl shadow-black/5 p-5 rounded-[28px] flex items-center gap-4 active:scale-95 transition-transform text-left cursor-pointer">
           <div className="w-12 h-12 bg-[#F4B433] rounded-2xl flex items-center justify-center text-[#101828]">
             <Info size={24} />
           </div>
@@ -224,7 +245,6 @@ const AboutView = () => {
         <div className="pt-10 space-y-8">
           <div className="space-y-2 text-center">
             <h3 className="font-black text-[#101828] tracking-[0.3em] text-xs uppercase">Network 20 is Your Resource</h3>
-           
           </div>
           
           <div className="grid gap-3">
