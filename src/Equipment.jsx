@@ -12,6 +12,13 @@ const categories = [
     title: 'Equipping Materials',
     description: 'Monthly 4-part deep dives into essential disciple-making topics.',
     items: [
+      {
+        title: 'Being a Servant',
+        author: 'Ed Hatt',
+        month: 'July 2026',
+        link: 'https://drive.google.com/drive/folders/1tqM6YuIxe1RXm3CIGLHX14aM-meyW6qX?usp=sharing',
+        description: 'Being, making, and multiplying disciples with you.'
+      },
 
       {
         title: 'The Great Commission',
@@ -26,13 +33,6 @@ const categories = [
         author: 'Adnan Daniel',
         month: 'May 2026',
         link: 'https://drive.google.com/drive/folders/15PaV-jGNWFkk5hnocCzhxJ9zoKQT4BUJ?usp=sharing',
-        description: 'Being, making, and multiplying disciples with you.'
-      },
-      {
-        title: 'Jesus Said "I Am"',
-        author: 'Pastor Yepabo',
-        month: 'April 2026',
-        link: 'https://drive.google.com/drive/folders/1FScoDABXViRv5Vw30-b3xdEMosFak9AJ?usp=sharing',
         description: 'Being, making, and multiplying disciples with you.'
       }
     ],
