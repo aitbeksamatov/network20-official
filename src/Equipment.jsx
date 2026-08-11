@@ -12,6 +12,15 @@ const categories = [
     title: 'Equipping Materials',
     description: 'Monthly 4-part deep dives into essential disciple-making topics.',
     items: [
+
+      {
+        title: 'The Discipleship Journey',
+        author: 'Iskender Moldobaev',
+        month: 'August 2026',
+        link: 'https://drive.google.com/drive/folders/16kqTc7XrG855JQ25CssvRFxwLpVED17i?usp=sharing',
+        description: 'Being, making, and multiplying disciples with you.'
+      },
+
       {
         title: 'Being a Servant',
         author: 'Ed Hatt',
@@ -26,15 +35,9 @@ const categories = [
         month: 'June 2026',
         link: 'https://drive.google.com/drive/folders/1CxZh8-A65Jo8q-8DSwhrul705Qw2OVHB?usp=sharing',
         description: 'Being, making, and multiplying disciples with you.'
-      },
-
-      {
-        title: 'Elijah & Elisha',
-        author: 'Adnan Daniel',
-        month: 'May 2026',
-        link: 'https://drive.google.com/drive/folders/15PaV-jGNWFkk5hnocCzhxJ9zoKQT4BUJ?usp=sharing',
-        description: 'Being, making, and multiplying disciples with you.'
       }
+
+      
     ],
   },
 ];
