@@ -116,10 +116,10 @@ const HomeView = ({ onStart }) => (
 
     {/* STATS SECTION */}
     <section className="px-6 py-12 text-center grid grid-cols-2 gap-4 bg-gray-50/50 rounded-t-[48px]">
-      <StatCard icon={<UserPlus className="text-[#F4B433]"/>} num="2,500+" label="DISCIPLE-MAKERS" />
-      <StatCard icon={<Globe className="text-[#F4B433]"/>} num="65" label="Countries" />
+      <StatCard icon={<UserPlus className="text-[#F4B433]"/>} num="3,500+" label="DISCIPLE-MAKERS" />
+      <StatCard icon={<Globe className="text-[#F4B433]"/>} num="70" label="Countries" />
       <div className="col-span-2">
-        <StatCard icon={<Heart className="text-[#F4B433]"/>} num="10,600+" label="Disciples" />
+        <StatCard icon={<Heart className="text-[#F4B433]"/>} num="15,000+" label="Disciples" />
       </div>
     </section>
   </div>
