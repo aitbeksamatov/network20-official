@@ -14,26 +14,26 @@ const categories = [
     items: [
 
       {
-        title: 'The Discipleship Journey',
-        author: 'Iskender Moldobaev',
-        month: 'August 2026',
-        link: 'https://drive.google.com/drive/folders/16kqTc7XrG855JQ25CssvRFxwLpVED17i?usp=sharing',
+        title: 'The Love of God',
+        author: 'Aitbek Samatov',
+        month: 'November 2026',
+        link: 'https://drive.google.com/drive/folders/1xrLz0NhZLO28GJRgNYtKnC0A6b5IZU86',
         description: 'Being, making, and multiplying disciples with you.'
       },
 
       {
-        title: 'Being a Servant',
-        author: 'Ed Hatt',
-        month: 'July 2026',
-        link: 'https://drive.google.com/drive/folders/1tqM6YuIxe1RXm3CIGLHX14aM-meyW6qX?usp=sharing',
+        title: 'Fear of God',
+        author: 'Carlos Holguin',
+        month: 'October 2026',
+        link: 'https://drive.google.com/drive/folders/1PjhVm9tPE_oUdhRz6Nqz_c3oT5mSHCUw',
         description: 'Being, making, and multiplying disciples with you.'
       },
 
       {
-        title: 'The Great Commission',
-        author: 'Amir Kazikhozhaev',
-        month: 'June 2026',
-        link: 'https://drive.google.com/drive/folders/1CxZh8-A65Jo8q-8DSwhrul705Qw2OVHB?usp=sharing',
+        title: 'Be Courageous',
+        author: 'Carlos Holguin',
+        month: 'September 2026',
+        link: 'https://drive.google.com/drive/folders/1lKr3Le9kTjtqFrJTE0tTY3YcFY6ZTx1Y',
         description: 'Being, making, and multiplying disciples with you.'
       }
 
